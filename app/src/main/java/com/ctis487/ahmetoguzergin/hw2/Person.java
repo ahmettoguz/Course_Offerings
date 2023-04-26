@@ -9,12 +9,15 @@ public class Person {
     private String password;
 
     private int id;
+    private int lastUsedId = 1;
 
-    public Person(String name, String eMail, String password, int id) {
+
+    public Person(String name, String eMail, String password) {
         this.name = name;
         this.eMail = eMail;
         this.password = password;
-        this.id = id;
+        this.id = lastUsedId;
+        lastUsedId++;
     }
 
     // getters

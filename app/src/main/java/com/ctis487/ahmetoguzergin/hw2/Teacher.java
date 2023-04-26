@@ -5,8 +5,8 @@ import android.widget.Toast;
 
 public class Teacher extends Person implements DialogBehavior {
 
-    public Teacher(String name, String eMail, String password, int id) {
-        super(name, eMail, password, id);
+    public Teacher(String name, String eMail, String password) {
+        super(name, eMail, password);
     }
 
     @Override

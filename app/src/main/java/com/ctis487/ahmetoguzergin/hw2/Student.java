@@ -6,8 +6,8 @@ import android.widget.Toast;
 public class Student extends Person implements DialogBehavior {
     private String[] takenCourseCodes;
 
-    public Student(String name, String eMail, String password, int id, String[] takenCourseCodes) {
-        super(name, eMail, password, id);
+    public Student(String name, String eMail, String password, String[] takenCourseCodes) {
+        super(name, eMail, password);
         this.takenCourseCodes = takenCourseCodes;
     }
 
