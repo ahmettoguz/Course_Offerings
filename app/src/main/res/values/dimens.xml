@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="card_Component_Width">300dp</dimen>
+    <dimen name="header_Size">26sp</dimen>
+    <dimen name="text_Size">22sp</dimen>
+    <dimen name="component_Margin_Top">10dp</dimen>
+
+    <dimen name="shadowTop">1dp</dimen>
+    <dimen name="shadowBottom">2dp</dimen>
+    <dimen name="shadowLeft">1dp</dimen>
+    <dimen name="shadowRight">1dp</dimen>
+    <dimen name="shadowRadius">5dp</dimen>
+</resources>

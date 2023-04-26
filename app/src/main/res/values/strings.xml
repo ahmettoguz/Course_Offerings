@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AhmetOguzErgin_HW2</string>
+    <string name="E_Mail">E-Mail</string>
+    <string name="Password">Password</string>
+    <string name="Login">LOGIN</string>
+    <string name="Offerings">OFFERINGS</string>
+</resources>
