@@ -21,6 +21,7 @@ import java.util.Collections;
 public class MainSys {
 
     public static ArrayList<Person> persons = new ArrayList<>();
+    public static ArrayList<Course> courses = new ArrayList<>();
 
     public static void prepareData() {
         Student s1 = new Student("Ahmet", "ahmet@hotmail.com", "ahmet", new String[]{"CTIS151", "CTIS152", "CTIS255"});
@@ -32,6 +33,8 @@ public class MainSys {
         Teacher t2 = new Teacher("ali", "ali@hotmail.com", "ali");
 
         Collections.addAll(persons, s1, s2, s3, s4, t1, t2);
+
+        // Course c1 = new Course()
     }
 
     public static void animateTextView(Context ctx, TextView tvTarget) {

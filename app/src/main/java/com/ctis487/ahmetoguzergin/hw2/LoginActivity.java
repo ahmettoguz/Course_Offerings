@@ -6,7 +6,6 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import com.ctis487.ahmetoguzergin.hw2.databinding.ActivityLoginBinding;
 
@@ -51,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                 // direct to main page if login is success
                 if (curentPerson != null) {
                     MainSys.msg(LoginActivity.this, "Successfully login");
-                    MainSys.directToMainPage(LoginActivity.this, MainActivity.class, curentPerson);
+                    MainSys.directToMainPage(LoginActivity.this, CourseActivity.class, curentPerson);
                 }
             }
         });

@@ -4,4 +4,6 @@
     <string name="Password">Password</string>
     <string name="Login">LOGIN</string>
     <string name="Offerings">OFFERINGS</string>
+    <string name="course_Title">Department Of Information System and Technology</string>
+    <string name="course_Spinner_Label">Select course year</string>
 </resources>

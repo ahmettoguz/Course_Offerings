@@ -8,16 +8,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.ctis487.ahmetoguzergin.hw2.databinding.ActivityMainBinding;
+import com.ctis487.ahmetoguzergin.hw2.databinding.ActivityCourseBinding;
 
-public class MainActivity extends AppCompatActivity {
-    ActivityMainBinding binding;
+public class CourseActivity extends AppCompatActivity {
+    ActivityCourseBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityCourseBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
 
         // hide title bar
