@@ -4,10 +4,13 @@ import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
@@ -45,10 +48,40 @@ public class MainSys {
 
         // blink animation of the text
         Animation anim = new AlphaAnimation(0.0f, 1.0f);
-        anim.setDuration(2000);
+        anim.setDuration(3000);
         //anim.setStartOffset(200);
         anim.setRepeatMode(Animation.REVERSE);
         anim.setRepeatCount(Animation.INFINITE);
         tvTarget.startAnimation(anim);
+    }
+
+    public static Person loginEvent(Context ctx, String eMail, String password) {
+        //check username and password return person object
+        for (Person person : persons) {
+            if (person.geteMail().equalsIgnoreCase(eMail)) {
+                if (person.getPassword().equalsIgnoreCase(password))
+                    return person;
+                else {
+                    msg(ctx, "Login Failed!");
+                    return null;
+                }
+            }
+        }
+
+        msg(ctx, "Login Failed!");
+        return null;
+    }
+
+    public static void msg(Context ctx, String msg) {
+        Toast.makeText(ctx, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    public static void directToMainPage(Context ctx, Class target, Person person) {
+        // bundle and intent operation to send person object
+        Intent sendIntent = new Intent(ctx, target);
+        Bundle sendBundle = new Bundle();
+        sendBundle.putParcelable("person", person);
+        sendIntent.putExtras(sendBundle);
+        ctx.startActivity(sendIntent);
     }
 }

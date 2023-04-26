@@ -30,11 +30,35 @@ public class LoginActivity extends AppCompatActivity {
         // lock orientation
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        // create users
+        MainSys.prepareData();
+
+        //fill input fileds
+        test();
+
+        // color animation of the title
+        MainSys.animateTextView(this, binding.loginTvTitle);
+
+        // login button click event
         binding.LoginBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(LoginActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
+                // check person
+                String eMail = binding.loginEtEmail.getText().toString();
+                String password = binding.loginEtPassword.getText().toString();
+                Person curentPerson = MainSys.loginEvent(LoginActivity.this, eMail, password);
+
+                // direct to main page if login is success
+                if (curentPerson != null) {
+                    MainSys.msg(LoginActivity.this, "Successfully login");
+                    MainSys.directToMainPage(LoginActivity.this, MainActivity.class, curentPerson);
+                }
             }
         });
+    }
+
+    private void test() {
+        binding.loginEtEmail.setText("ahmet@hotmail.com");
+        binding.loginEtPassword.setText("ahmet");
     }
 }
