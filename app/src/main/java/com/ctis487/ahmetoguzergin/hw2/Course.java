@@ -9,6 +9,7 @@ public class Course {
     private String description;
 
     private int imgId;
+    private int year;
     private int lectureHour;
     private int quota;
     private int enrolledStuCount;
@@ -17,12 +18,13 @@ public class Course {
 
     private boolean hasLab;
 
-    public Course(String code, String name, ArrayList<Section> sections, String description, int imgId, int lectureHour, int quota, int enrolledStuCount, double credit, boolean hasLab) {
+    public Course(String code, String name, ArrayList<Section> sections, String description, int imgId, int year, int lectureHour, int quota, int enrolledStuCount, double credit, boolean hasLab) {
         this.code = code;
         this.name = name;
         this.sections = sections;
         this.description = description;
         this.imgId = imgId;
+        this.year = year;
         this.lectureHour = lectureHour;
         this.quota = quota;
         this.enrolledStuCount = enrolledStuCount;
