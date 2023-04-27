@@ -32,9 +32,45 @@ public class MainSys {
         Teacher t1 = new Teacher("Nese", "nese@hotmail.com", "nese");
         Teacher t2 = new Teacher("ali", "ali@hotmail.com", "ali");
 
+        // persons
         Collections.addAll(persons, s1, s2, s3, s4, t1, t2);
 
-        // Course c1 = new Course()
+        ArrayList<Section> sections = new ArrayList<>();
+
+        Section s = new Section("nese", 1);
+        sections.add(s);
+        s = new Section("nese", 2);
+        sections.add(s);
+        s = new Section("ali", 3);
+        sections.add(s);
+
+        //courses with sections
+        Course c1 = new Course("151", "Introduction to Programming", sections, "An introduction to programming from both design and programming standpoints. Syntax and semantics of programming languages, programming style, program debugging and testing...", R.drawable.ctis151, 7, 30, 25, 4, true);
+
+        sections.clear();
+        s = new Section("nese", 1);
+        sections.add(s);
+        s = new Section("ali", 2);
+        sections.add(s);
+
+        Course c2 = new Course("166", "Information Technologies", sections, "The basic operating system concepts by using Linux operating system. Linux GUI, kernel, CUI, shells, basic shell programming...", R.drawable.ctis166, 5, 20, 20, 3, true);
+
+        sections.clear();
+        Course c3 = new Course("262", "Applied Computer Networks", sections, "This course covers Switching, Routing and Wireless Essentials related topics. The coverd topics include the architecture...", R.drawable.ctis162, 5, 18, 16, 4, true);
+
+        sections.clear();
+        s = new Section("nese", 1);
+        sections.add(s);
+        s = new Section("nese", 2);
+        sections.add(s);
+        Course c4 = new Course("255", "Frontend Web Technologies", sections, "The necessary background information and the technologies to develop and maintain a professional web site. The design...", R.drawable.ctis255, 3, 29, 25, 3, false);
+
+        sections.clear();
+        s = new Section("nese", 1);
+        sections.add(s);
+        Course c5 = new Course("487", "Mobile Application Development", sections, "Technical and business related challenges posed by current mobile devices and wireless...", R.drawable.ctis487, 5, 24, 24, 4, true);
+
+        Collections.addAll(courses, c1, c2, c3, c4, c5);
     }
 
     public static void animateTextView(Context ctx, TextView tvTarget) {

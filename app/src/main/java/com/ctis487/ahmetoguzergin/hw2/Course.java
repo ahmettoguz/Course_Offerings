@@ -15,5 +15,18 @@ public class Course {
 
     private double credit;
 
-    private boolean hasLabHour;
+    private boolean hasLab;
+
+    public Course(String code, String name, ArrayList<Section> sections, String description, int imgId, int lectureHour, int quota, int enrolledStuCount, double credit, boolean hasLab) {
+        this.code = code;
+        this.name = name;
+        this.sections = sections;
+        this.description = description;
+        this.imgId = imgId;
+        this.lectureHour = lectureHour;
+        this.quota = quota;
+        this.enrolledStuCount = enrolledStuCount;
+        this.credit = credit;
+        this.hasLab = hasLab;
+    }
 }
