@@ -45,7 +45,7 @@ public class MainSys {
         sections.add(s);
 
         //courses with sections
-        Course c1 = new Course("151", "Introduction to Programming", sections, "An introduction to programming from both design and programming standpoints. Syntax and semantics of programming languages, programming style, program debugging and testing...", R.drawable.ctis151, 7, 30, 25, 4, true);
+        Course c1 = new Course("151", "Introduction to Programming", sections, "An introduction to programming from both design and programming standpoints. Syntax and semantics of programming languages, program debugging and testing...", R.drawable.ctis151, 7, 30, 25, 4, true);
 
         sections.clear();
         s = new Section("nese", 1);
@@ -70,7 +70,19 @@ public class MainSys {
         sections.add(s);
         Course c5 = new Course("487", "Mobile Application Development", sections, "Technical and business related challenges posed by current mobile devices and wireless...", R.drawable.ctis487, 5, 24, 24, 4, true);
 
-        Collections.addAll(courses, c1, c2, c3, c4, c5);
+        sections.clear();
+        s = new Section("ali", 1);
+        sections.add(s);
+        Course c6 = new Course("496", "Computer and Network Security", sections, "Theory and practice of computer security, focusing in particular on the security aspects of computing systems. Survey of classical...", R.drawable.ctis496, 3, 18, 17, 3, false);
+
+        sections.clear();
+        s = new Section("ali", 1);
+        sections.add(s);
+        s = new Section("ali", 2);
+        sections.add(s);
+        Course c7 = new Course("473", "Cloud Computing Foundations", sections, "Cloud concepts overview. Cloud economics and billing. Overview of cloud security, architecture, pricing and support...", R.drawable.ctis473, 3, 23, 17, 3, false);
+
+        Collections.addAll(courses, c1, c2, c3, c4, c5,c6,c7);
     }
 
     public static void animateTextView(Context ctx, TextView tvTarget) {
