@@ -4,51 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/linear_background"
+    android:background="@drawable/bg3"
     tools:context=".CourseActivity">
 
     <TextView
         android:id="@+id/course_Tv_Title"
         android:layout_width="0dp"
         android:layout_height="70dp"
-        android:layout_marginStart="29dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="29dp"
         android:text="@string/course_Title"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="@dimen/header_Size"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/course_Tv_SpinnerLabel"
+
+        android:layout_marginTop="@dimen/component_Margin_Top"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/course_Tv_PersonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User : AHMET OGUZ ..."
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_Size"
+
+        android:layout_marginStart="@dimen/component_Margin_Top2"
+        android:layout_marginTop="@dimen/component_Margin_Top2"
+        app:layout_constraintStart_toStartOf="@+id/course_Tv_Title"
+        app:layout_constraintTop_toBottomOf="@+id/course_Tv_Title" />
 
     <TextView
         android:id="@+id/course_Tv_SpinnerLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginBottom="@dimen/component_Margin_Top"
-        android:layout_marginTop="@dimen/component_Margin_Top"
 
         android:text="@string/course_Spinner_Label"
         android:textColor="@color/black"
         android:textSize="@dimen/text_Size"
+
+        android:layout_marginTop="@dimen/component_Margin_Top2"
         app:layout_constraintBottom_toTopOf="@+id/course_Sp_Year"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/course_Tv_Title" />
+        app:layout_constraintStart_toStartOf="@+id/course_Tv_PersonName"
+        app:layout_constraintTop_toBottomOf="@+id/course_Tv_PersonName" />
 
     <Spinner
         android:id="@+id/course_Sp_Year"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="518dp"
-        android:layout_marginTop="@dimen/component_Margin_Top"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+
+        android:layout_marginTop="@dimen/component_Margin_Top2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/course_Tv_SpinnerLabel"
         app:layout_constraintTop_toBottomOf="@+id/course_Tv_SpinnerLabel" />
 

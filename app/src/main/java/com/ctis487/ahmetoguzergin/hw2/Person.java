@@ -7,7 +7,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-public class Person implements Parcelable {
+public class Person implements Parcelable{
     private String name;
     private String eMail;
     private String password;
@@ -91,5 +91,6 @@ public class Person implements Parcelable {
         parcel.writeInt(lastUsedId);
     }
     // parcelable methods end
+
 }
 

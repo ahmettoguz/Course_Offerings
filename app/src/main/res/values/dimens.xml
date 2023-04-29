@@ -4,6 +4,8 @@
     <dimen name="header_Size">26sp</dimen>
     <dimen name="text_Size">22sp</dimen>
     <dimen name="component_Margin_Top">10dp</dimen>
+    <dimen name="component_Margin_Top2">20dp</dimen>
+    <dimen name="component_Margin_Top3">30dp</dimen>
 
     <dimen name="shadowTop">1dp</dimen>
     <dimen name="shadowBottom">2dp</dimen>
