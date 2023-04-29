@@ -8,6 +8,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -57,8 +58,30 @@ public class CourseActivity extends AppCompatActivity {
 
     private void setTitle() {
         Intent receivedIntent = getIntent();
-        Bundle receivedBundle = receivedIntent.getExtras();
-        Person currentPerson = receivedBundle.getParcelable("person");
-        binding.courseTvPersonName.setText("Loged in as : " + currentPerson.getName());
+        int id = receivedIntent.getIntExtra("id", 0);
+
+        Person currentPerson = findObjectFromId(id);
+
+        Log.d("ahmet", currentPerson.toString());
+
+        if (currentPerson instanceof Student)
+            currentPerson = (Student) currentPerson;
+        else if (currentPerson instanceof Teacher)
+            currentPerson = (Teacher) currentPerson;
+
+        binding.courseTvPersonName.setText("Loged in as a : " + currentPerson.displayType() + "");
+
+        for (Person p : MainSys.getPersons()) {
+            Log.d("ahmet", p.toString());
+        }
+
+    }
+
+    private Person findObjectFromId(int id) {
+        for (Person p : MainSys.getPersons()) {
+            if (p.getId() == id)
+                return p;
+        }
+        return null;
     }
 }

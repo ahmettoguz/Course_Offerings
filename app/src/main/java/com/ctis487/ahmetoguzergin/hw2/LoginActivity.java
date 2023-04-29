@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -47,9 +48,11 @@ public class LoginActivity extends AppCompatActivity {
                 String password = binding.loginEtPassword.getText().toString();
                 Person curentPerson = MainSys.loginEvent(LoginActivity.this, eMail, password);
 
+
                 // direct to main page if login is success
                 if (curentPerson != null) {
                     MainSys.msg(LoginActivity.this, "Successfully login");
+
                     MainSys.directToMainPage(LoginActivity.this, CourseActivity.class, curentPerson);
                 }
             }

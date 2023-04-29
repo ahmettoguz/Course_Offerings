@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.TextView;
@@ -110,9 +111,12 @@ public class MainSys {
         //check username and password return person object
         for (Person person : persons) {
             if (person.geteMail().equalsIgnoreCase(eMail)) {
-                if (person.getPassword().equalsIgnoreCase(password))
-                    return person;
-                else {
+                if (person.getPassword().equalsIgnoreCase(password)) {
+                    if (person instanceof Student)
+                        return (Student) person;
+                    else
+                        return (Teacher) person;
+                } else {
                     msg(ctx, "Login Failed!");
                     return null;
                 }
@@ -128,11 +132,9 @@ public class MainSys {
     }
 
     public static void directToMainPage(Context ctx, Class target, Person person) {
-        // bundle and intent operation to send person object
+        // intent operation to send person object
         Intent sendIntent = new Intent(ctx, target);
-        Bundle sendBundle = new Bundle();
-        sendBundle.putParcelable("person", person);
-        sendIntent.putExtras(sendBundle);
+        sendIntent.putExtra("id", person.getId());
         ctx.startActivity(sendIntent);
     }
 

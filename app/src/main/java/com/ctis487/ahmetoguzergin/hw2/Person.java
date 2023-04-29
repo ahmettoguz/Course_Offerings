@@ -7,13 +7,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-public class Person implements Parcelable{
+public class Person implements Parcelable,Behavior{
     private String name;
     private String eMail;
     private String password;
-
     private int id;
-    private int lastUsedId = 1;
+    private static int lastUsedId = 1;
 
 
     public Person(String name, String eMail, String password) {
@@ -92,5 +91,9 @@ public class Person implements Parcelable{
     }
     // parcelable methods end
 
+    @Override
+    public String displayType() {
+        return null;
+    }
 }
 
