@@ -64,7 +64,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/course_RecyclerView"
         android:layout_width="360dp"
-        android:layout_height="480dp"
+        android:layout_height="400dp"
 
         android:layout_marginTop="@dimen/component_Margin_Top2"
         app:layout_constraintEnd_toEndOf="parent"

@@ -141,4 +141,8 @@ public class MainSys {
     public static ArrayList<Person> getPersons() {
         return persons;
     }
+
+    public static ArrayList<Course> getCourses() {
+        return courses;
+    }
 }

@@ -3,14 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/course_rv_normal_ll"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/shadow">
 
 
     <ImageView
         android:id="@+id/course_rv_normal_ivCourse"
-        android:layout_width="100dp"
+        android:layout_width="60dp"
         android:layout_height="100dp"
-        android:src="@drawable/ctis151" />
+        android:src="@drawable/ctis151"
+        android:layout_marginStart="5dp"/>
 
 
     <TextView

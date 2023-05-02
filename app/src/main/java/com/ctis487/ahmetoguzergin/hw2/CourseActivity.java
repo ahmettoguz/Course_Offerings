@@ -2,12 +2,12 @@
 package com.ctis487.ahmetoguzergin.hw2;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 public class CourseActivity extends AppCompatActivity implements Course_RecyclerView_Adapter.AdapterBehavior {
     ActivityCourseBinding binding;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +38,48 @@ public class CourseActivity extends AppCompatActivity implements Course_Recycler
         // lock orientation
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        //create data set will be replaced by database
+        MainSys.prepareData();
+
         // Set user name
         setTitle();
 
         // Adapter operations for custom spinner
-        performAdapterOperations();
+        performSpinnerAdapterOperations();
 
+        // bind recycler view
+        recyclerView = findViewById(R.id.course_RecyclerView);
+
+        // * place items one by one
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
+
+        //// * place item without considering rectangle sizes like pinterest post blog
+        //StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        //recyclerView.setLayoutManager(staggeredGridLayoutManager);
+
+        //// * place items with grid system
+        //GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        //recyclerView.setLayoutManager(gridLayoutManager);
+
+        // fill the RecyclerView
+        Course_RecyclerView_Adapter adapter = new Course_RecyclerView_Adapter(this, MainSys.getCourses());
+        recyclerView.setAdapter(adapter);
+
+        //// if new element is added notify this change to the recycler view
+        //Button btnAdd = findViewById(R.id.btn_Main_Add);
+        //btnAdd.setOnClickListener(new View.OnClickListener() {
+        //    @Override
+        //    public void onClick(View view) {
+        //        Social s = new Social("ahmooo", R.drawable.ic_launcher_foreground);
+        //        MainSys.getSocials().add(s);
+        //        adapter.notifyDataSetChanged();
+        //    }
+        //});
     }
 
-    private void performAdapterOperations() {
+    private void performSpinnerAdapterOperations() {
         ArrayList<String> years = new ArrayList<>();
         years.add("All Years");
         years.add("First Year");
@@ -85,8 +119,15 @@ public class CourseActivity extends AppCompatActivity implements Course_Recycler
         return null;
     }
 
+    // interface method of the adapter
     @Override
     public void displayItem(Course course) {
         Toast.makeText(this, course.getName(), Toast.LENGTH_SHORT).show();
     }
 }
+
+
+
+
+
+
