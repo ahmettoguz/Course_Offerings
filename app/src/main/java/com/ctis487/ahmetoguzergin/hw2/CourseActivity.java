@@ -17,7 +17,7 @@ import com.ctis487.ahmetoguzergin.hw2.databinding.ActivityCourseBinding;
 
 import java.util.ArrayList;
 
-public class CourseActivity extends AppCompatActivity {
+public class CourseActivity extends AppCompatActivity implements Course_RecyclerView_Adapter.AdapterBehavior {
     ActivityCourseBinding binding;
 
     @Override
@@ -83,5 +83,10 @@ public class CourseActivity extends AppCompatActivity {
                 return p;
         }
         return null;
+    }
+
+    @Override
+    public void displayItem(Course course) {
+        Toast.makeText(this, course.getName(), Toast.LENGTH_SHORT).show();
     }
 }

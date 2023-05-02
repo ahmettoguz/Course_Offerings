@@ -31,4 +31,52 @@ public class Course {
         this.credit = credit;
         this.hasLab = hasLab;
     }
+
+    //getter
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public ArrayList<Section> getSections() {
+        return sections;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getImgId() {
+        return imgId;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public int getLectureHour() {
+        return lectureHour;
+    }
+
+    public int getQuota() {
+        return quota;
+    }
+
+    public int getEnrolledStuCount() {
+        return enrolledStuCount;
+    }
+
+    public double getCredit() {
+        return credit;
+    }
+
+    public boolean isHasLab() {
+        return hasLab;
+    }
+
+    //getter end
 }
