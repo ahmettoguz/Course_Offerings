@@ -1,9 +1,11 @@
 package com.ctis487.ahmetoguzergin.hw2;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -86,7 +88,6 @@ public class Course_RecyclerView_Adapter extends RecyclerView.Adapter<RecyclerVi
             itemView.parentLayout.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View view, MotionEvent motionEvent) {
-                    //return MainActivity.this.mDetector.onTouchEvent(motionEvent);
                     return gestureDetector.onTouchEvent(motionEvent);
                 }
             });
@@ -115,7 +116,6 @@ public class Course_RecyclerView_Adapter extends RecyclerView.Adapter<RecyclerVi
             itemView.parentLayout.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View view, MotionEvent motionEvent) {
-                    //return MainActivity.this.mDetector.onTouchEvent(motionEvent);
                     return gestureDetector.onTouchEvent(motionEvent);
                 }
             });
@@ -170,8 +170,30 @@ public class Course_RecyclerView_Adapter extends RecyclerView.Adapter<RecyclerVi
     class CustomGestureListener extends GestureDetector.SimpleOnGestureListener {
         @Override
         public void onLongPress(@NonNull MotionEvent e) {
-            Toast.makeText(context, "long Pressss", Toast.LENGTH_SHORT).show();
+            createShowDialog();
             super.onLongPress(e);
         }
     }
+
+    public void createShowDialog() {
+        Dialog customDialog = new Dialog(context);
+        customDialog.setContentView(R.layout.course_dialog);
+
+//        TextView tv = customDialog.findViewById(R.id.tv_dialog);
+        ImageView iv = customDialog.findViewById(R.id.course_Dialog_Img_Course);
+        Button btnClose = customDialog.findViewById(R.id.course_Dialog_Btn_Close);
+
+//        tv.setText("ahmet");
+//        iv.setImageResource(R.drawable.ahmet1);
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                customDialog.dismiss();
+            }
+        });
+
+        customDialog.show();
+    }
+
 }

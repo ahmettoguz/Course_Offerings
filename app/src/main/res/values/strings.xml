@@ -6,4 +6,5 @@
     <string name="Offerings">OFFERINGS</string>
     <string name="course_Title">Department Of Information System and Technology</string>
     <string name="course_Spinner_Label">Select course year</string>
+    <string name="Close">Close</string>
 </resources>
