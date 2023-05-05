@@ -1,6 +1,9 @@
-* custom spinner
-* custom recycler view
-* authentication
-* authorization
-* filter by the course year
-* custom launcher icon used
+* Object Oriented concepts used (Inheritance, Intent, Polymorphism).
+* Object transferrance between activities (Intent, Bundle, Parcelable).
+* custom spinner used.
+* custom recycler view used.
+* authentication (Behavior of the users) provided.
+* authorization (Login operation) provided.
+* filtering courses by the years.
+* custom launcher icon used.
+* text blink and color animation used.
