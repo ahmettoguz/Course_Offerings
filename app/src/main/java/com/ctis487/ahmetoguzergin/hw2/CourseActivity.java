@@ -139,7 +139,3 @@ public class CourseActivity extends AppCompatActivity implements Course_Recycler
 }
 
 
-
-
-
-

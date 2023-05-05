@@ -13,6 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+
+import android.view.MotionEvent;
+
+import androidx.core.view.GestureDetectorCompat;
+
+import android.view.GestureDetector;
+import android.widget.Toast;
+
+
 public class Course_RecyclerView_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Item_Type {
 
     private Context context;
@@ -67,6 +76,20 @@ public class Course_RecyclerView_Adapter extends RecyclerView.Adapter<RecyclerVi
                 }
             });
 
+            // simple listener operations
+            GestureDetectorCompat gestureDetector;
+            CustomGestureListener customGestureListener;
+
+            customGestureListener = new CustomGestureListener();
+            gestureDetector = new GestureDetectorCompat(context, customGestureListener);
+
+            itemView.parentLayout.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    //return MainActivity.this.mDetector.onTouchEvent(motionEvent);
+                    return gestureDetector.onTouchEvent(motionEvent);
+                }
+            });
         } else if (getItemViewType(position) == COURSE_RV_ITEM_LAB) {
             Custom_RecyclerView_Adapter_ItemHolder_Lab itemView = (Custom_RecyclerView_Adapter_ItemHolder_Lab) holder;
             itemView.name.setText("CTIS " + currentItem.getCode() + "-  " + currentItem.getName());
@@ -78,6 +101,22 @@ public class Course_RecyclerView_Adapter extends RecyclerView.Adapter<RecyclerVi
                 @Override
                 public void onClick(View v) {
                     behavior.displayItem(currentItem);
+                }
+            });
+
+
+            // simple listener operations
+            GestureDetectorCompat gestureDetector;
+            CustomGestureListener customGestureListener;
+
+            customGestureListener = new CustomGestureListener();
+            gestureDetector = new GestureDetectorCompat(context, customGestureListener);
+
+            itemView.parentLayout.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    //return MainActivity.this.mDetector.onTouchEvent(motionEvent);
+                    return gestureDetector.onTouchEvent(motionEvent);
                 }
             });
         }
@@ -126,10 +165,13 @@ public class Course_RecyclerView_Adapter extends RecyclerView.Adapter<RecyclerVi
             parentLayout = itemView.findViewById(R.id.course_rv_lab_ll);
         }
     }
+
+    // simple listener
+    class CustomGestureListener extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public void onLongPress(@NonNull MotionEvent e) {
+            Toast.makeText(context, "long Pressss", Toast.LENGTH_SHORT).show();
+            super.onLongPress(e);
+        }
+    }
 }
-
-
-
-
-
-
