@@ -2,3 +2,5 @@
 * custom recycler view
 * authentication
 * authorization
+* filter by the course year
+* custom launcher icon used

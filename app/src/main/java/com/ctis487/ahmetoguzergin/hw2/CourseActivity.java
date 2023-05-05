@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.ctis487.ahmetoguzergin.hw2.databinding.ActivityCourseBinding;
@@ -37,9 +38,6 @@ public class CourseActivity extends AppCompatActivity implements Course_Recycler
 
         // lock orientation
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-        //create data set will be replaced by database
-        MainSys.prepareData();
 
         // Set user name
         setTitle();
@@ -77,6 +75,27 @@ public class CourseActivity extends AppCompatActivity implements Course_Recycler
         //        adapter.notifyDataSetChanged();
         //    }
         //});
+
+        // filter recyler view by the course year
+        binding.courseSpYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                ArrayList<Course> filteredCourses = new ArrayList<>();
+
+                for (Course c : MainSys.getCourses()) {
+                    if (c.getYear() == i || i == 0)
+                        filteredCourses.add(c);
+                }
+
+                Course_RecyclerView_Adapter adapter = new Course_RecyclerView_Adapter(CourseActivity.this, filteredCourses);
+                recyclerView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     private void performSpinnerAdapterOperations() {
@@ -96,19 +115,12 @@ public class CourseActivity extends AppCompatActivity implements Course_Recycler
 
         Person currentPerson = findObjectFromId(id);
 
-        Log.d("ahmet", currentPerson.toString());
-
         if (currentPerson instanceof Student)
             currentPerson = (Student) currentPerson;
         else if (currentPerson instanceof Teacher)
             currentPerson = (Teacher) currentPerson;
 
         binding.courseTvPersonName.setText("Loged in as a : " + currentPerson.displayType() + "");
-
-        for (Person p : MainSys.getPersons()) {
-            Log.d("ahmet", p.toString());
-        }
-
     }
 
     private Person findObjectFromId(int id) {

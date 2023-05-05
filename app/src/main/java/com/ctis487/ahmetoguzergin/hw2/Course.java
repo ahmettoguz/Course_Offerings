@@ -79,4 +79,22 @@ public class Course {
     }
 
     //getter end
+
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", sections=" + sections +
+                ", description='" + description + '\'' +
+                ", imgId=" + imgId +
+                ", year=" + year +
+                ", lectureHour=" + lectureHour +
+                ", quota=" + quota +
+                ", enrolledStuCount=" + enrolledStuCount +
+                ", credit=" + credit +
+                ", hasLab=" + hasLab +
+                '}';
+    }
 }

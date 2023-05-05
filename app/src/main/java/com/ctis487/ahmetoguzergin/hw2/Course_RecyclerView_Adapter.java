@@ -56,7 +56,7 @@ public class Course_RecyclerView_Adapter extends RecyclerView.Adapter<RecyclerVi
         if (getItemViewType(position) == COURSE_RV_ITEM_NORMAL) {
             Custom_RecyclerView_Adapter_ItemHolder_Normal itemView = (Custom_RecyclerView_Adapter_ItemHolder_Normal) holder;
 
-            itemView.name.setText(currentItem.getName());
+            itemView.name.setText("CTIS " + currentItem.getCode() + " - " + currentItem.getName());
             itemView.img.setImageResource(currentItem.getImgId());
 
             // click event with interface behavior
@@ -69,7 +69,7 @@ public class Course_RecyclerView_Adapter extends RecyclerView.Adapter<RecyclerVi
 
         } else if (getItemViewType(position) == COURSE_RV_ITEM_LAB) {
             Custom_RecyclerView_Adapter_ItemHolder_Lab itemView = (Custom_RecyclerView_Adapter_ItemHolder_Lab) holder;
-            itemView.name.setText(currentItem.getName());
+            itemView.name.setText("CTIS " + currentItem.getCode() + "-  " + currentItem.getName());
             itemView.imgCourse.setImageResource(currentItem.getImgId());
             itemView.imgLab.setImageResource(R.drawable.computer_lab);
 
