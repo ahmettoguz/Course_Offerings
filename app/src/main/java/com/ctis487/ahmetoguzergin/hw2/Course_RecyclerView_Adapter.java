@@ -132,9 +132,9 @@ public class Course_RecyclerView_Adapter extends RecyclerView.Adapter<RecyclerVi
     public int getItemViewType(int position) {
         Course course = recyclerItemValues.get(position);
         if (course.isHasLab())
-            return COURSE_RV_ITEM_NORMAL;
-        else
             return COURSE_RV_ITEM_LAB;
+        else
+            return COURSE_RV_ITEM_NORMAL;
     }
 
     // Create that class according to the xml layout file used.
