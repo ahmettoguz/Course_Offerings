@@ -2,6 +2,7 @@ package com.ctis487.ahmetoguzergin.hw2;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,7 +83,7 @@ public class Course_RecyclerView_Adapter extends RecyclerView.Adapter<RecyclerVi
             GestureDetectorCompat gestureDetector;
             CustomGestureListener customGestureListener;
 
-            customGestureListener = new CustomGestureListener();
+            customGestureListener = new CustomGestureListener(currentItem);
             gestureDetector = new GestureDetectorCompat(context, customGestureListener);
 
             itemView.parentLayout.setOnTouchListener(new View.OnTouchListener() {
@@ -110,7 +111,7 @@ public class Course_RecyclerView_Adapter extends RecyclerView.Adapter<RecyclerVi
             GestureDetectorCompat gestureDetector;
             CustomGestureListener customGestureListener;
 
-            customGestureListener = new CustomGestureListener();
+            customGestureListener = new CustomGestureListener(currentItem);
             gestureDetector = new GestureDetectorCompat(context, customGestureListener);
 
             itemView.parentLayout.setOnTouchListener(new View.OnTouchListener() {
@@ -168,23 +169,33 @@ public class Course_RecyclerView_Adapter extends RecyclerView.Adapter<RecyclerVi
 
     // simple listener
     class CustomGestureListener extends GestureDetector.SimpleOnGestureListener {
+
+        private Object obj;
+        private Course course;
+
+        public CustomGestureListener(Object obj) {
+            this.obj = obj;
+            course = (Course) obj;
+        }
+
         @Override
         public void onLongPress(@NonNull MotionEvent e) {
-            createShowDialog();
+            createShowDialog(course);
             super.onLongPress(e);
         }
     }
 
-    public void createShowDialog() {
+    public void createShowDialog(Course course) {
         Dialog customDialog = new Dialog(context);
         customDialog.setContentView(R.layout.course_dialog);
 
-//        TextView tv = customDialog.findViewById(R.id.tv_dialog);
+        TextView tv = customDialog.findViewById(R.id.course_Dialog_tv);
         ImageView iv = customDialog.findViewById(R.id.course_Dialog_Img_Course);
         Button btnClose = customDialog.findViewById(R.id.course_Dialog_Btn_Close);
 
-//        tv.setText("ahmet");
-//        iv.setImageResource(R.drawable.ahmet1);
+
+        tv.setText(course.toString());
+        iv.setImageResource(course.getImgId());
 
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override

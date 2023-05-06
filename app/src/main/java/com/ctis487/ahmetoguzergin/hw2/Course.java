@@ -83,18 +83,15 @@ public class Course {
 
     @Override
     public String toString() {
-        return "Course{" +
-                "code='" + code + '\'' +
-                ", name='" + name + '\'' +
-                ", sections=" + sections +
-                ", description='" + description + '\'' +
-                ", imgId=" + imgId +
-                ", year=" + year +
-                ", lectureHour=" + lectureHour +
-                ", quota=" + quota +
-                ", enrolledStuCount=" + enrolledStuCount +
-                ", credit=" + credit +
-                ", hasLab=" + hasLab +
-                '}';
+        return "Course Code: " + code +
+                "\n\nCourse Name: " + name +
+                "\n\nNumber of sections: " + sections.size() +
+                "\n\nDescription: " + description +
+                "\n\nLecture Hour: " + lectureHour +
+                "\n\nQuota: " + quota +
+                "\n\nEnrolled Student Count: " + enrolledStuCount +
+                "\n\nCredit: " + credit +
+                "\n\nLab Hour: " + hasLab;
     }
+
 }
