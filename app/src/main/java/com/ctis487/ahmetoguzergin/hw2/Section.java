@@ -8,4 +8,20 @@ public class Section {
         this.teacherName = teacherName;
         this.sectionNo = sectionNo;
     }
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public int getSectionNo() {
+        return sectionNo;
+    }
+
+    @Override
+    public String toString() {
+        return "Section{" +
+                "teacherName='" + teacherName + '\'' +
+                ", sectionNo=" + sectionNo +
+                '}';
+    }
 }

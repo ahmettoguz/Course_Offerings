@@ -22,6 +22,8 @@ public class CourseActivity extends AppCompatActivity implements Course_Recycler
     ActivityCourseBinding binding;
     RecyclerView recyclerView;
 
+    Person currentPerson;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,7 +115,7 @@ public class CourseActivity extends AppCompatActivity implements Course_Recycler
         Intent receivedIntent = getIntent();
         int id = receivedIntent.getIntExtra("id", 0);
 
-        Person currentPerson = findObjectFromId(id);
+        currentPerson = findObjectFromId(id);
 
         if (currentPerson instanceof Student)
             currentPerson = (Student) currentPerson;
@@ -134,7 +136,16 @@ public class CourseActivity extends AppCompatActivity implements Course_Recycler
     // interface method of the adapter
     @Override
     public void displayItem(Course course) {
-        Toast.makeText(this, course.getName(), Toast.LENGTH_SHORT).show();
+        Intent sendIntent = new Intent();
+        if (currentPerson instanceof Teacher) {
+            sendIntent = new Intent(CourseActivity.this, Sections_Teacher_Activity.class);
+        } else {
+            sendIntent = new Intent(CourseActivity.this, Sections_Student_Activity.class);
+        }
+
+        sendIntent.putExtra("person", currentPerson);
+        sendIntent.putExtra("courseCode", course.getCode());
+        startActivity(sendIntent);
     }
 }
 

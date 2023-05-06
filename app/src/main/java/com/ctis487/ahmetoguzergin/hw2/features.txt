@@ -8,3 +8,4 @@
 * custom launcher icon used.
 * text blink and color animation used.
 * Gestures used for events.
+* ON long press.

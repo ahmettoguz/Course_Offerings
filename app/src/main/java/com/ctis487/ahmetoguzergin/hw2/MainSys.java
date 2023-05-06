@@ -47,8 +47,9 @@ public class MainSys {
 
         //courses with sections
         Course c1 = new Course("151", "Introduction to Programming", sections, "An introduction to programming from both design and programming standpoints. Syntax and semantics of programming languages, program debugging and testing...", R.drawable.ctis151, 1, 7, 30, 25, 4, true);
+        Log.d("ahmet" , c1.getSections().toString());
 
-        sections.clear();
+        sections = new ArrayList<>();
         s = new Section("nese", 1);
         sections.add(s);
         s = new Section("ali", 2);
@@ -56,27 +57,27 @@ public class MainSys {
 
         Course c2 = new Course("166", "Information Technologies", sections, "The basic operating system concepts by using Linux operating system. Linux GUI, kernel, CUI, shells, basic shell programming...", R.drawable.ctis166, 1, 5, 20, 20, 3, true);
 
-        sections.clear();
+        sections = new ArrayList<>();
         Course c3 = new Course("262", "Applied Computer Networks", sections, "This course covers Switching, Routing and Wireless Essentials related topics. The coverd topics include the architecture...", R.drawable.ctis162, 2, 5, 18, 16, 4, true);
 
-        sections.clear();
+        sections = new ArrayList<>();
         s = new Section("nese", 1);
         sections.add(s);
         s = new Section("nese", 2);
         sections.add(s);
         Course c4 = new Course("255", "Frontend Web Technologies", sections, "The necessary background information and the technologies to develop and maintain a professional web site. The design...", R.drawable.ctis255, 2, 3, 29, 25, 3, false);
 
-        sections.clear();
+        sections = new ArrayList<>();
         s = new Section("nese", 1);
         sections.add(s);
         Course c5 = new Course("487", "Mobile Application Development", sections, "Technical and business related challenges posed by current mobile devices and wireless...", R.drawable.ctis487, 3, 5, 24, 24, 4, true);
 
-        sections.clear();
+        sections = new ArrayList<>();
         s = new Section("ali", 1);
         sections.add(s);
         Course c6 = new Course("496", "Computer and Network Security", sections, "Theory and practice of computer security, focusing in particular on the security aspects of computing systems. Survey of classical...", R.drawable.ctis496, 4, 3, 18, 17, 3, false);
 
-        sections.clear();
+        sections = new ArrayList<>();
         s = new Section("ali", 1);
         sections.add(s);
         s = new Section("ali", 2);
