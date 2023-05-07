@@ -187,5 +187,4 @@ public class Section_RecyclerView_Adapter extends RecyclerView.Adapter<Section_R
         dialog.create();
         dialog.show();
     }
-
 }

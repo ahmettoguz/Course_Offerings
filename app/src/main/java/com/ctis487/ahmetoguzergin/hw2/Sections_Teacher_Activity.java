@@ -19,6 +19,9 @@ import java.util.ArrayList;
 
 public class Sections_Teacher_Activity extends AppCompatActivity {
     ActivitySectionsTeacherBinding binding;
+    Teacher teacher;
+    Section_RecyclerView_Adapter adapter;
+    Course course;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +48,8 @@ public class Sections_Teacher_Activity extends AppCompatActivity {
         int personId = receivedIntent.getIntExtra("personId", 0);
         String courseCode = receivedIntent.getStringExtra("courseCode");
 
-        Course course = findCourseByCode(courseCode);
-        Teacher teacher = findTeacherById(personId);
+        course = findCourseByCode(courseCode);
+        teacher = findTeacherById(personId);
 
         binding.sectionTeacherIv.setImageResource(course.getImgId());
         binding.sectionTeacherTvCourse.setText("CTIS - " + course.getCode() + " : " + course.getName());
@@ -68,8 +71,31 @@ public class Sections_Teacher_Activity extends AppCompatActivity {
         //recyclerView.setLayoutManager(staggeredGridLayoutManager);
 
         // fill the RecyclerView
-        Section_RecyclerView_Adapter adapter = new Section_RecyclerView_Adapter(this, course.getSections(), course, teacher);
+        adapter = new Section_RecyclerView_Adapter(this, course.getSections(), course, teacher);
         recyclerView.setAdapter(adapter);
+
+        // add section
+        binding.sectionTeacherBtnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addSection();
+            }
+        });
+    }
+
+    private void addSection() {
+        Section s = new Section(teacher.getName(), getAvailableSectionNo());
+        course.getSections().add(s);
+        adapter.notifyDataSetChanged();
+    }
+
+    private int getAvailableSectionNo() {
+        ArrayList<Section> sections = course.getSections();
+        if (sections.size() > 0) {
+            Section s = sections.get(sections.size() - 1);
+            return s.getSectionNo() + 1;
+        } else
+            return 1;
     }
 
     private Course findCourseByCode(String code) {
