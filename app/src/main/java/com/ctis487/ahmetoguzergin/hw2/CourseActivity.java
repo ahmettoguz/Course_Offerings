@@ -143,7 +143,7 @@ public class CourseActivity extends AppCompatActivity implements Course_Recycler
             sendIntent = new Intent(CourseActivity.this, Sections_Student_Activity.class);
         }
 
-        sendIntent.putExtra("person", currentPerson);
+        sendIntent.putExtra("personId", currentPerson.getId());
         sendIntent.putExtra("courseCode", course.getCode());
         startActivity(sendIntent);
     }

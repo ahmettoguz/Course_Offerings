@@ -47,7 +47,7 @@ public class MainSys {
 
         //courses with sections
         Course c1 = new Course("151", "Introduction to Programming", sections, "An introduction to programming from both design and programming standpoints. Syntax and semantics of programming languages, program debugging and testing...", R.drawable.ctis151, 1, 7, 30, 25, 4, true);
-        Log.d("ahmet" , c1.getSections().toString());
+        Log.d("ahmet", c1.getSections().toString());
 
         sections = new ArrayList<>();
         s = new Section("nese", 1);

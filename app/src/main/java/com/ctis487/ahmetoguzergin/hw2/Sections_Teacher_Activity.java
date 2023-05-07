@@ -38,14 +38,15 @@ public class Sections_Teacher_Activity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         // text animation
-//        MainSys.animateTextView(this, binding.sectionTeacherTvTitle);
+        //MainSys.animateTextView(this, binding.sectionTeacherTvTitle);
 
         // get data with intent
         Intent receivedIntent = getIntent();
-        Person currentPerson = receivedIntent.getParcelableExtra("person");
+        int personId = receivedIntent.getIntExtra("personId", 0);
         String courseCode = receivedIntent.getStringExtra("courseCode");
 
         Course course = findCourseByCode(courseCode);
+        Teacher teacher = findTeacherById(personId);
 
         binding.sectionTeacherIv.setImageResource(course.getImgId());
         binding.sectionTeacherTvCourse.setText("CTIS - " + course.getCode() + " : " + course.getName());
@@ -67,7 +68,7 @@ public class Sections_Teacher_Activity extends AppCompatActivity {
         //recyclerView.setLayoutManager(staggeredGridLayoutManager);
 
         // fill the RecyclerView
-        Section_RecyclerView_Adapter adapter = new Section_RecyclerView_Adapter(this, course.getSections(), course);
+        Section_RecyclerView_Adapter adapter = new Section_RecyclerView_Adapter(this, course.getSections(), course, teacher);
         recyclerView.setAdapter(adapter);
 
         //// if new element is added notify this change to the recycler view
@@ -87,6 +88,15 @@ public class Sections_Teacher_Activity extends AppCompatActivity {
         ) {
             if (c.getCode().equalsIgnoreCase(code))
                 return c;
+        }
+        return null;
+    }
+
+    private Teacher findTeacherById(int personId) {
+        for (Person p : MainSys.getPersons()
+        ) {
+            if (p.getId() == personId)
+                return (Teacher) p;
         }
         return null;
     }
