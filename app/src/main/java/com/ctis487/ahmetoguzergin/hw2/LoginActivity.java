@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         MainSys.prepareData();
 
         //fill input fileds
-        testTeacher();
+        fillAsStudent();
 
         // color animation of the title
         MainSys.animateTextView(this, binding.loginTvTitle);
@@ -59,11 +59,11 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void testStudent() {
+    private void fillAsStudent() {
         binding.loginEtEmail.setText("ahmet@hotmail.com");
         binding.loginEtPassword.setText("ahmet");
     }
-    private void testTeacher() {
+    private void fillAsTeacher() {
         binding.loginEtEmail.setText("nese@hotmail.com");
         binding.loginEtPassword.setText("nese");
     }

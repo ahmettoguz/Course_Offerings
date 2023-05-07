@@ -4,6 +4,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Sections_Student_Activity">
+    android:background="@drawable/bg2"
+    tools:context=".Sections_Teacher_Activity">
+
+    <ImageView
+        android:id="@+id/section_Student_Iv"
+        android:layout_width="200dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="20dp"
+
+        android:src="@drawable/ctis151"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/section_Student_TvCourse"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shadow"
+        android:padding="10dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_Size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/section_Student_Iv" />
+
+    <TextView
+        android:id="@+id/section_Student_TvQuota"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/component_Margin_Top2"
+        android:background="@drawable/shadow"
+        android:padding="10dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_Size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/section_Student_TvCourse" />
+
+    <TextView
+        android:id="@+id/section_Student_TvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shadow"
+        android:padding="10dp"
+        android:text="@string/SECTIONS"
+        android:textColor="@color/black"
+        android:textSize="@dimen/header_Size"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/section_Student_Rv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/section_Student_TvQuota" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/section_Student_Rv"
+        android:layout_width="350dp"
+        android:layout_height="330dp"
+        android:background="@drawable/shadow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/section_Student_TvTitle" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
