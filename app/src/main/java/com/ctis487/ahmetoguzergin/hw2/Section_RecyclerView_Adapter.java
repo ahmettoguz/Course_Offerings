@@ -33,11 +33,14 @@ public class Section_RecyclerView_Adapter extends RecyclerView.Adapter<Section_R
     private Person person;
     private Course course;
 
+    private Section_RecyclerView_Adapter adapter;
+
     public Section_RecyclerView_Adapter(Context context, ArrayList<Section> recyclerItemValues, Course course, Person person) {
         this.context = context;
         this.recyclerItemValues = recyclerItemValues;
         this.course = course;
         this.person = person;
+        this.adapter = this;
     }
 
     @NonNull
@@ -122,7 +125,7 @@ public class Section_RecyclerView_Adapter extends RecyclerView.Adapter<Section_R
                     // Fling to the right
                     if (person instanceof Teacher) {
                         if (section.getTeacherName().toLowerCase().equalsIgnoreCase(person.getName().toLowerCase())) {
-                            createShowDialog("Do you want to delete this section?");
+                            createShowDialog("Do you want to delete this section?", section, course);
                         } else {
                             MainSys.msg(context, "Section is not belong to you.");
                         }
@@ -153,7 +156,7 @@ public class Section_RecyclerView_Adapter extends RecyclerView.Adapter<Section_R
 
     }
 
-    public void createShowDialog(String msg) {
+    public void createShowDialog(String msg, Section section, Course course) {
         AlertDialog.Builder dialog = new AlertDialog.Builder(context); //this
         dialog.setTitle("Warning!");
         dialog.setIcon(R.mipmap.ic_launcher);
@@ -162,15 +165,16 @@ public class Section_RecyclerView_Adapter extends RecyclerView.Adapter<Section_R
         dialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(context, "Yes is clicked", Toast.LENGTH_SHORT).show(); //MainActivity.this
-
+                course.getSections().remove(section);
+                adapter.notifyDataSetChanged();
+                MainSys.msg(context, "Section with id: " + section.getSectionNo() + " is deleted successfully.");
+                //update database
             }
         });
 
         dialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(context, "No is clicked", Toast.LENGTH_SHORT).show();
             }
         });
 

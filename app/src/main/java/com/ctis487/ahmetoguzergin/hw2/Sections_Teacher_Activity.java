@@ -70,17 +70,6 @@ public class Sections_Teacher_Activity extends AppCompatActivity {
         // fill the RecyclerView
         Section_RecyclerView_Adapter adapter = new Section_RecyclerView_Adapter(this, course.getSections(), course, teacher);
         recyclerView.setAdapter(adapter);
-
-        //// if new element is added notify this change to the recycler view
-        //Button btnAdd = findViewById(R.id.btn_Main_Add);
-        //btnAdd.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        //    public void onClick(View view) {
-        //        Social s = new Social("ahmooo", R.drawable.ic_launcher_foreground);
-        //        MainSys.getSocials().add(s);
-        //        adapter.notifyDataSetChanged();
-        //    }
-        //});
     }
 
     private Course findCourseByCode(String code) {
