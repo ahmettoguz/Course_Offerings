@@ -1,6 +1,7 @@
 package com.ctis487.ahmetoguzergin.hw2;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -56,11 +58,11 @@ public class Section_RecyclerView_Adapter extends RecyclerView.Adapter<Section_R
         holder.tv.setText("#" + curentItem.getSectionNo() + " - Professor: " + curentItem.getTeacherName().substring(0, 1).toUpperCase() + curentItem.getTeacherName().substring(1));
         holder.img.setImageResource(course.getImgId());
 
-
+        //gesture methods
         GestureDetectorCompat gestureDetector;
         CustomGestureListener customGestureListener;
 
-        customGestureListener = new CustomGestureListener();
+        customGestureListener = new CustomGestureListener(curentItem);
         gestureDetector = new GestureDetectorCompat(context, customGestureListener);
 
         holder.parentLayout.setOnTouchListener(new View.OnTouchListener() {
@@ -99,6 +101,14 @@ public class Section_RecyclerView_Adapter extends RecyclerView.Adapter<Section_R
     }
 
     class CustomGestureListener extends GestureDetector.SimpleOnGestureListener {
+        private Object obj;
+        private Section section;
+
+        public CustomGestureListener(Object obj) {
+            this.obj = obj;
+            section = (Section) obj;
+        }
+
 
         @Override
         public boolean onFling(@NonNull MotionEvent e1, @NonNull MotionEvent e2, float velocityX, float velocityY) {
@@ -111,7 +121,11 @@ public class Section_RecyclerView_Adapter extends RecyclerView.Adapter<Section_R
                 if (velocityX > 0) {
                     // Fling to the right
                     if (person instanceof Teacher) {
-                        MainSys.msg(context, "teacher fling right");
+                        if (section.getTeacherName().toLowerCase().equalsIgnoreCase(person.getName().toLowerCase())) {
+                            createShowDialog("Do you want to delete this section?");
+                        } else {
+                            MainSys.msg(context, "Section is not belong to you.");
+                        }
                     } else {
                         MainSys.msg(context, "student fling rigth");
                     }
@@ -138,4 +152,36 @@ public class Section_RecyclerView_Adapter extends RecyclerView.Adapter<Section_R
         }
 
     }
+
+    public void createShowDialog(String msg) {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(context); //this
+        dialog.setTitle("Warning!");
+        dialog.setIcon(R.mipmap.ic_launcher);
+        dialog.setMessage(msg);
+
+        dialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(context, "Yes is clicked", Toast.LENGTH_SHORT).show(); //MainActivity.this
+
+            }
+        });
+
+        dialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(context, "No is clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        dialog.setNeutralButton("Close", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+
+        dialog.create();
+        dialog.show();
+    }
+
 }

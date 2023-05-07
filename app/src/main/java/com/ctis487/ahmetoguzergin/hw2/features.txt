@@ -2,10 +2,9 @@
 * Object transferrance between activities (Intent, Bundle, Parcelable).
 * custom spinner used.
 * custom recycler view used.
-* authentication (Behavior of the users) provided.
+* authentication (Behavior of the users) provided. For ex.(Teacher cannot delete other teacher section).
 * authorization (Login operation) provided.
 * filtering courses by the years.
 * custom launcher icon used.
 * text blink and color animation used.
-* Gestures used for events.
-* ON long press.
+* Gestures used for events (Delete section with fling, display course details with long press).
