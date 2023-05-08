@@ -68,18 +68,18 @@ public class Section_RecyclerView_Adapter extends RecyclerView.Adapter<Section_R
         customGestureListener = new CustomGestureListener(curentItem);
         gestureDetector = new GestureDetectorCompat(context, customGestureListener);
 
+        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainSys.msg(context, "click eventi olmadan flingler çalışmıyor section recycler view adapter line 71.");
+            }
+        });
+
         holder.parentLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 //return MainActivity.this.mDetector.onTouchEvent(motionEvent);
                 return gestureDetector.onTouchEvent(motionEvent);
-            }
-        });
-
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MainSys.msg(context, person.getName());
             }
         });
     }
@@ -130,7 +130,7 @@ public class Section_RecyclerView_Adapter extends RecyclerView.Adapter<Section_R
                             MainSys.msg(context, "Section is not belong to you.");
                         }
                     } else {
-//                        Sections_Student_Activity.flingEvents(context, "right");
+                        Sections_Student_Activity.flingEvents(context, ((Student) person), course, section, "right");
                     }
 
                 } else {

@@ -7,4 +7,9 @@
 * filtering courses by the years.
 * custom launcher icon used.
 * text blink and color animation used.
-* Gestures used for events (Delete section with fling, display course details with long press).
+* Gestures used for events (Delete, enroll, unenroll section with fling, display course details with long press).
+
+
+--Problems--
+click eventi olmadan flingler çalışmıyor section recycler view adapter line 71?
+Recycler view i max height ile wrap content yapmak istiyorum nasıl yapacağım?

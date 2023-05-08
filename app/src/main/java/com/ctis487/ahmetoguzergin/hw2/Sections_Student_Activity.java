@@ -16,6 +16,7 @@ import android.view.WindowManager;
 import com.ctis487.ahmetoguzergin.hw2.databinding.ActivitySectionsStudentBinding;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Sections_Student_Activity extends AppCompatActivity {
@@ -121,8 +122,17 @@ public class Sections_Student_Activity extends AppCompatActivity {
 
     public static void flingEvents(Context ctx, Student student, Course course, Section section, String direction) {
         if (direction.equalsIgnoreCase("right")) {
-            MainSys.msg(ctx, "right");
+            if ((int) binding.sectionStudentTvQuota.getCurrentTextColor() == ENROLLED) {
+                MainSys.msg(ctx, "You have already enrolled for this course.");
+            } else if ((int) binding.sectionStudentTvQuota.getCurrentTextColor() == FULL) {
+                MainSys.msg(ctx, "Quota is full.");
+            } else if ((int) binding.sectionStudentTvQuota.getCurrentTextColor() == AVAILABLE) {
 
+                student.getTakenCourses().put((String) course.getCode(), section.getSectionNo() + "");
+                course.setEnrolledStuCount(course.getEnrolledStuCount() + 1);
+                changeQuotaField();
+                MainSys.msg(ctx, "Enrolled from the section.");
+            }
         } else if (direction.equalsIgnoreCase("left")) {
             if ((int) binding.sectionStudentTvQuota.getCurrentTextColor() == ENROLLED) {
                 String enrolledSectionNo = student.getTakenCourses().get(course.getCode());
