@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/section_Student_Iv"
         android:layout_width="200dp"
-        android:layout_height="130dp"
+        android:layout_height="110dp"
         android:layout_marginTop="20dp"
 
         android:src="@drawable/ctis151"
@@ -37,7 +37,7 @@
         android:id="@+id/section_Student_TvQuota"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/component_Margin_Top"
+        android:layout_marginTop="5dp"
         android:background="@drawable/shadow"
         android:padding="10dp"
         android:text="TextView"
@@ -57,7 +57,7 @@
         android:textColor="@color/black"
         android:textSize="@dimen/header_Size"
         android:textStyle="bold"
-        android:layout_marginTop="@dimen/component_Margin_Top2"
+        android:layout_marginTop="5dp"
         app:layout_constraintBottom_toTopOf="@+id/section_Student_Rv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -25,10 +25,10 @@ public class MainSys {
     public static ArrayList<Course> courses = new ArrayList<>();
 
     public static void prepareData() {
-        Student s1 = new Student("Ahmet", "ahmet@hotmail.com", "ahmet", new String[]{"CTIS151", "CTIS152", "CTIS255"});
-        Student s2 = new Student("Zeynep", "zeynep@hotmail.com", "zeynep", new String[]{"CTIS264"});
-        Student s3 = new Student("Tuna", "tuna@hotmail.com", "tuna", new String[]{"CTIS166", "CTIS487"});
-        Student s4 = new Student("Sena", "sena@hotmail.com", "sena", new String[]{"CTIS256", "CTIS487"});
+        Student s1 = new Student("Ahmet", "ahmet@hotmail.com", "ahmet", new String[]{"151", "152", "255"});
+        Student s2 = new Student("Zeynep", "zeynep@hotmail.com", "zeynep", new String[]{"264"});
+        Student s3 = new Student("Tuna", "tuna@hotmail.com", "tuna", new String[]{"166", "487"});
+        Student s4 = new Student("Sena", "sena@hotmail.com", "sena", new String[]{"256", "487"});
 
         Teacher t1 = new Teacher("Nese", "nese@hotmail.com", "nese");
         Teacher t2 = new Teacher("ali", "ali@hotmail.com", "ali");

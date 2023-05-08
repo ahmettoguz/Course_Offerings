@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.content.pm.ActivityInfo;
 import android.view.View;
@@ -48,7 +49,9 @@ public class Sections_Student_Activity extends AppCompatActivity {
 
         binding.sectionStudentIv.setImageResource(course.getImgId());
         binding.sectionStudentTvCourse.setText("CTIS - " + course.getCode() + " : " + course.getName());
-        binding.sectionStudentTvQuota.setText("CTIS - " + course.getCode() + " : " + course.getName());
+
+        // change color of the text according to quota
+        changeQuotaField();
 
         // bind recycler view
         RecyclerView recyclerView = findViewById(R.id.section_Student_Rv);
@@ -70,6 +73,29 @@ public class Sections_Student_Activity extends AppCompatActivity {
         adapter = new Section_RecyclerView_Adapter(this, course.getSections(), course, student);
         recyclerView.setAdapter(adapter);
     }
+
+    private void changeQuotaField() {
+        int available = Color.rgb(98, 161, 254);
+        int enrolled = Color.rgb(76, 162, 122);
+        int full = Color.rgb(223, 69, 84);
+
+        if (course.getQuota() > course.getEnrolledStuCount()) {
+            binding.sectionStudentTvQuota.setTextColor(available);
+            binding.sectionStudentTvQuota.setText("Quota: " + course.getEnrolledStuCount() + "/" + course.getQuota() + "  You can enroll.");
+        } else {
+            binding.sectionStudentTvQuota.setTextColor(full);
+            binding.sectionStudentTvQuota.setText("Quota: " + course.getEnrolledStuCount() + "/" + course.getQuota() + "  Quota is full!");
+        }
+
+        for (String code : student.getTakenCourseCodes()
+        ) {
+            if (code.equalsIgnoreCase(course.getCode())) {
+                binding.sectionStudentTvQuota.setTextColor(enrolled);
+                binding.sectionStudentTvQuota.setText("Quota: " + course.getEnrolledStuCount() + "/" + course.getQuota() + "  You are enrolled.");
+            }
+        }
+    }
+
 
     private Course findCourseByCode(String code) {
         for (Course c : MainSys.getCourses()

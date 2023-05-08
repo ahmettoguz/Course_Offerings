@@ -136,7 +136,6 @@ public class Section_RecyclerView_Adapter extends RecyclerView.Adapter<Section_R
                 } else {
                     // Fling to the left
                     if (person instanceof Student) {
-
                         MainSys.msg(context, "student fling left");
                     }
                 }
