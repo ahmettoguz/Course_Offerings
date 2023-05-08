@@ -89,13 +89,13 @@ public class Sections_Student_Activity extends AppCompatActivity {
             binding.sectionStudentTvQuota.setText("Quota: " + course.getEnrolledStuCount() + "/" + course.getQuota() + "  Quota is full!");
         }
 
-        for (String code : student.getTakenCourseCodes()
-        ) {
-            if (code.equalsIgnoreCase(course.getCode())) {
-                binding.sectionStudentTvQuota.setTextColor(ENROLLED);
-                binding.sectionStudentTvQuota.setText("Quota: " + course.getEnrolledStuCount() + "/" + course.getQuota() + "  You are enrolled.");
-            }
-        }
+//        for (String code : student.getTakenCourseCodes()
+//        ) {
+//            if (code.equalsIgnoreCase(course.getCode())) {
+//                binding.sectionStudentTvQuota.setTextColor(ENROLLED);
+//                binding.sectionStudentTvQuota.setText("Quota: " + course.getEnrolledStuCount() + "/" + course.getQuota() + "  You are enrolled.");
+//            }
+//        }
     }
 
 
@@ -123,7 +123,7 @@ public class Sections_Student_Activity extends AppCompatActivity {
 
         } else if (direction.equalsIgnoreCase("left")) {
             if ((int) binding.sectionStudentTvQuota.getCurrentTextColor() == ENROLLED) {
-            MainSys.msg(ctx, "will be unenrolled.");
+                MainSys.msg(ctx, "will be unenrolled.");
             }
         }
     }

@@ -19,6 +19,8 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainSys {
 
@@ -26,20 +28,23 @@ public class MainSys {
     public static ArrayList<Course> courses = new ArrayList<>();
 
     public static void prepareData() {
-        ArrayList<String> takenCourses = new ArrayList<>();
-        Collections.addAll(takenCourses, "151", "152", "255");
+        Map<String, String> takenCourses = new HashMap<String, String>();
+        takenCourses.put("151", "1");
+        takenCourses.put("255", "2");
         Student s1 = new Student("Ahmet", "ahmet@hotmail.com", "ahmet", takenCourses);
 
-        takenCourses = new ArrayList<>();
-        Collections.addAll(takenCourses, "264");
+        takenCourses = new HashMap<String, String>();
+        takenCourses.put("151", "1");
         Student s2 = new Student("Zeynep", "zeynep@hotmail.com", "zeynep", takenCourses);
 
-        takenCourses = new ArrayList<>();
-        Collections.addAll(takenCourses, "166", "487");
+        takenCourses = new HashMap<String, String>();
+        takenCourses.put("166", "2");
+        takenCourses.put("487", "1");
         Student s3 = new Student("Tuna", "tuna@hotmail.com", "tuna", takenCourses);
 
-        takenCourses = new ArrayList<>();
-        Collections.addAll(takenCourses, "256", "487");
+        takenCourses = new HashMap<String, String>();
+        takenCourses.put("496", "1");
+        takenCourses.put("487", "1");
         Student s4 = new Student("Sena", "sena@hotmail.com", "sena", takenCourses);
 
         Teacher t1 = new Teacher("Nese", "nese@hotmail.com", "nese");
