@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -25,10 +26,21 @@ public class MainSys {
     public static ArrayList<Course> courses = new ArrayList<>();
 
     public static void prepareData() {
-        Student s1 = new Student("Ahmet", "ahmet@hotmail.com", "ahmet", new String[]{"151", "152", "255"});
-        Student s2 = new Student("Zeynep", "zeynep@hotmail.com", "zeynep", new String[]{"264"});
-        Student s3 = new Student("Tuna", "tuna@hotmail.com", "tuna", new String[]{"166", "487"});
-        Student s4 = new Student("Sena", "sena@hotmail.com", "sena", new String[]{"256", "487"});
+        ArrayList<String> takenCourses = new ArrayList<>();
+        Collections.addAll(takenCourses, "151", "152", "255");
+        Student s1 = new Student("Ahmet", "ahmet@hotmail.com", "ahmet", takenCourses);
+
+        takenCourses = new ArrayList<>();
+        Collections.addAll(takenCourses, "264");
+        Student s2 = new Student("Zeynep", "zeynep@hotmail.com", "zeynep", takenCourses);
+
+        takenCourses = new ArrayList<>();
+        Collections.addAll(takenCourses, "166", "487");
+        Student s3 = new Student("Tuna", "tuna@hotmail.com", "tuna", takenCourses);
+
+        takenCourses = new ArrayList<>();
+        Collections.addAll(takenCourses, "256", "487");
+        Student s4 = new Student("Sena", "sena@hotmail.com", "sena", takenCourses);
 
         Teacher t1 = new Teacher("Nese", "nese@hotmail.com", "nese");
         Teacher t2 = new Teacher("ali", "ali@hotmail.com", "ali");

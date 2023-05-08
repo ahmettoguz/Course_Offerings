@@ -15,10 +15,14 @@ import android.view.WindowManager;
 import com.ctis487.ahmetoguzergin.hw2.databinding.ActivitySectionsStudentBinding;
 
 public class Sections_Student_Activity extends AppCompatActivity {
-    ActivitySectionsStudentBinding binding;
+    static ActivitySectionsStudentBinding binding;
     Student student;
     Section_RecyclerView_Adapter adapter;
     Course course;
+
+    final static int AVAILABLE = Color.rgb(98, 161, 254);
+    final static int ENROLLED = Color.rgb(76, 162, 122);
+    final static int FULL = Color.rgb(223, 69, 84);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,22 +80,19 @@ public class Sections_Student_Activity extends AppCompatActivity {
     }
 
     private void changeQuotaField() {
-        int available = Color.rgb(98, 161, 254);
-        int enrolled = Color.rgb(76, 162, 122);
-        int full = Color.rgb(223, 69, 84);
 
         if (course.getQuota() > course.getEnrolledStuCount()) {
-            binding.sectionStudentTvQuota.setTextColor(available);
+            binding.sectionStudentTvQuota.setTextColor(AVAILABLE);
             binding.sectionStudentTvQuota.setText("Quota: " + course.getEnrolledStuCount() + "/" + course.getQuota() + "  You can enroll.");
         } else {
-            binding.sectionStudentTvQuota.setTextColor(full);
+            binding.sectionStudentTvQuota.setTextColor(FULL);
             binding.sectionStudentTvQuota.setText("Quota: " + course.getEnrolledStuCount() + "/" + course.getQuota() + "  Quota is full!");
         }
 
         for (String code : student.getTakenCourseCodes()
         ) {
             if (code.equalsIgnoreCase(course.getCode())) {
-                binding.sectionStudentTvQuota.setTextColor(enrolled);
+                binding.sectionStudentTvQuota.setTextColor(ENROLLED);
                 binding.sectionStudentTvQuota.setText("Quota: " + course.getEnrolledStuCount() + "/" + course.getQuota() + "  You are enrolled.");
             }
         }
@@ -121,7 +122,9 @@ public class Sections_Student_Activity extends AppCompatActivity {
             MainSys.msg(ctx, "right");
 
         } else if (direction.equalsIgnoreCase("left")) {
-            MainSys.msg(ctx, "left");
+            if ((int) binding.sectionStudentTvQuota.getCurrentTextColor() == ENROLLED) {
+            MainSys.msg(ctx, "will be unenrolled.");
+            }
         }
     }
 }
