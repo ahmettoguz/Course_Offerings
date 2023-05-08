@@ -26,6 +26,13 @@ public class Student extends Person implements Parcelable, Behavior {
     }
 
     @Override
+    public String toString() {
+        return "Student{" +
+                "takenCourses=" + takenCourses +
+                '}';
+    }
+
+    @Override
     public String displayType() {
         return "Student";
     }

@@ -9,16 +9,20 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.content.pm.ActivityInfo;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
 import com.ctis487.ahmetoguzergin.hw2.databinding.ActivitySectionsStudentBinding;
 
+import java.util.Collection;
+import java.util.Map;
+
 public class Sections_Student_Activity extends AppCompatActivity {
     static ActivitySectionsStudentBinding binding;
-    Student student;
+    static Student student;
     Section_RecyclerView_Adapter adapter;
-    Course course;
+    static Course course;
 
     final static int AVAILABLE = Color.rgb(98, 161, 254);
     final static int ENROLLED = Color.rgb(76, 162, 122);
@@ -79,25 +83,23 @@ public class Sections_Student_Activity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    private void changeQuotaField() {
+    private static void changeQuotaField() {
 
         if (course.getQuota() > course.getEnrolledStuCount()) {
             binding.sectionStudentTvQuota.setTextColor(AVAILABLE);
-            binding.sectionStudentTvQuota.setText("Quota: " + course.getEnrolledStuCount() + "/" + course.getQuota() + "  You can enroll.");
+            binding.sectionStudentTvQuota.setText("Quota: " + course.getEnrolledStuCount() + "/" + course.getQuota() + ".  You can enroll.");
         } else {
             binding.sectionStudentTvQuota.setTextColor(FULL);
-            binding.sectionStudentTvQuota.setText("Quota: " + course.getEnrolledStuCount() + "/" + course.getQuota() + "  Quota is full!");
+            binding.sectionStudentTvQuota.setText("Quota: " + course.getEnrolledStuCount() + "/" + course.getQuota() + ".  Quota is full!");
         }
 
-//        for (String code : student.getTakenCourseCodes()
-//        ) {
-//            if (code.equalsIgnoreCase(course.getCode())) {
-//                binding.sectionStudentTvQuota.setTextColor(ENROLLED);
-//                binding.sectionStudentTvQuota.setText("Quota: " + course.getEnrolledStuCount() + "/" + course.getQuota() + "  You are enrolled.");
-//            }
-//        }
+        if (student.getTakenCourses().containsKey(course.getCode())) {
+            String value = student.getTakenCourses().get(course.getCode());
+            String enrolledSectionNo = student.getTakenCourses().get(course.getCode());
+            binding.sectionStudentTvQuota.setTextColor(ENROLLED);
+            binding.sectionStudentTvQuota.setText("Quota: " + course.getEnrolledStuCount() + "/" + course.getQuota() + ".  You are enrolled for section " + enrolledSectionNo + ".");
+        }
     }
-
 
     private Course findCourseByCode(String code) {
         for (Course c : MainSys.getCourses()
@@ -117,13 +119,24 @@ public class Sections_Student_Activity extends AppCompatActivity {
         return null;
     }
 
-    public static void flingEvents(Context ctx, String direction) {
+    public static void flingEvents(Context ctx, Student student, Course course, Section section, String direction) {
         if (direction.equalsIgnoreCase("right")) {
             MainSys.msg(ctx, "right");
 
         } else if (direction.equalsIgnoreCase("left")) {
             if ((int) binding.sectionStudentTvQuota.getCurrentTextColor() == ENROLLED) {
-                MainSys.msg(ctx, "will be unenrolled.");
+                String enrolledSectionNo = student.getTakenCourses().get(course.getCode());
+
+                if (section.getSectionNo() == Integer.parseInt(enrolledSectionNo)) {
+                    student.getTakenCourses().remove(course.getCode());
+                    course.setEnrolledStuCount(course.getEnrolledStuCount() - 1);
+                    changeQuotaField();
+                    MainSys.msg(ctx, "Unenrolled from the section.");
+                } else {
+                    MainSys.msg(ctx, "You are not enrolled for this section.");
+                }
+            } else {
+                MainSys.msg(ctx, "You are not enrolled for this course.");
             }
         }
     }

@@ -81,6 +81,10 @@ public class Course {
     //getter end
 
 
+    public void setEnrolledStuCount(int enrolledStuCount) {
+        this.enrolledStuCount = enrolledStuCount;
+    }
+
     @Override
     public String toString() {
         return "Course Code: " + code +
