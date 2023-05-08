@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -113,5 +114,14 @@ public class Sections_Student_Activity extends AppCompatActivity {
                 return (Student) p;
         }
         return null;
+    }
+
+    public static void flingEvents(Context ctx, String direction) {
+        if (direction.equalsIgnoreCase("right")) {
+            MainSys.msg(ctx, "right");
+
+        } else if (direction.equalsIgnoreCase("left")) {
+            MainSys.msg(ctx, "left");
+        }
     }
 }

@@ -130,13 +130,13 @@ public class Section_RecyclerView_Adapter extends RecyclerView.Adapter<Section_R
                             MainSys.msg(context, "Section is not belong to you.");
                         }
                     } else {
-                        MainSys.msg(context, "student fling rigth");
+                        Sections_Student_Activity.flingEvents(context, "right");
                     }
 
                 } else {
                     // Fling to the left
                     if (person instanceof Student) {
-                        MainSys.msg(context, "student fling left");
+                        Sections_Student_Activity.flingEvents(context, "left");
                     }
                 }
                 result = true;
