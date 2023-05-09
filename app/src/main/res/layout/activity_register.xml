@@ -20,14 +20,14 @@
         android:paddingBottom="@dimen/component_Margin_Top2">
 
         <ImageView
-            android:id="@+id/login_Iv"
+            android:id="@+id/register_Iv"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
             android:src="@drawable/studentregister" />
 
         <TextView
-            android:id="@+id/login_Tv_Title"
+            android:id="@+id/register_Tv_Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/component_Margin_Top2"
@@ -71,7 +71,7 @@
             android:textSize="@dimen/text_Size" />
 
         <Button
-            android:id="@+id/Login_Btn_Registwq"
+            android:id="@+id/register_Btn_Register"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

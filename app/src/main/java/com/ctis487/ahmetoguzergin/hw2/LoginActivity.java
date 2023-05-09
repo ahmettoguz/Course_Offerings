@@ -5,14 +5,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
 import com.ctis487.ahmetoguzergin.hw2.databinding.ActivityLoginBinding;
 
+import androidx.core.view.GestureDetectorCompat;
+
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+
+
 public class LoginActivity extends AppCompatActivity {
     ActivityLoginBinding binding;
+
+    private GestureDetectorCompat gestureDetector;
+    private CustomGestureListener customGestureListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,13 +67,24 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        // register button click event
-        binding.LoginBtnRegister.setOnClickListener(new View.OnClickListener() {
+        // register button with gesture
+        customGestureListener = new CustomGestureListener();
+        gestureDetector = new GestureDetectorCompat(this, customGestureListener);
+
+        binding.LoginBtnRegister.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
-                openRegisterPage();
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                //return MainActivity.this.mDetector.onTouchEvent(motionEvent);
+                return gestureDetector.onTouchEvent(motionEvent);
             }
         });
+
+//        binding.LoginBtnRegister.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                openRegisterPage();
+//            }
+//        });
     }
 
     private void openRegisterPage() {
@@ -82,4 +101,17 @@ public class LoginActivity extends AppCompatActivity {
         binding.loginEtEmail.setText("nese@hotmail.com");
         binding.loginEtPassword.setText("nese");
     }
+
+    class CustomGestureListener extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onSingleTapConfirmed(MotionEvent event) {
+            openRegisterPage();
+            return true;
+        }
+    }
 }
+
+
+
+
+
