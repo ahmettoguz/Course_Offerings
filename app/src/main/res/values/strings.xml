@@ -10,4 +10,6 @@
     <string name="SECTIONS">SECTIONS</string>
     <string name="ADD">ADD</string>
     <string name="Register">REGISTER</string>
+    <string name="Name">Name</string>
+    <string name="Student_Registeration">Student Registeration</string>
 </resources>

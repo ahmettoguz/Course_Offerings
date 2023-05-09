@@ -13,3 +13,4 @@
 --Problems--
 click eventi olmadan flingler çalışmıyor section recycler view adapter line 71?
 Recycler view i max height ile wrap content yapmak istiyorum nasıl yapacağım?
+constraint layout dışında, view'in width'ine sayfanın 75% ini kapla diyebilir miyiz?

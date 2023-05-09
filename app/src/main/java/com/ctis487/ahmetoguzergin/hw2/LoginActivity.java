@@ -2,6 +2,7 @@ package com.ctis487.ahmetoguzergin.hw2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
@@ -57,12 +58,26 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // register button click event
+        binding.LoginBtnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openRegisterPage();
+            }
+        });
+    }
+
+    private void openRegisterPage() {
+        Intent sendIntent = new Intent(LoginActivity.this, RegisterActivity.class);
+        startActivity(sendIntent);
     }
 
     private void fillAsStudent() {
         binding.loginEtEmail.setText("ahmet@hotmail.com");
         binding.loginEtPassword.setText("ahmet");
     }
+
     private void fillAsTeacher() {
         binding.loginEtEmail.setText("nese@hotmail.com");
         binding.loginEtPassword.setText("nese");

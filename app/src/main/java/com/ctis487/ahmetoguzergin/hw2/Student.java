@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Student extends Person implements Parcelable, Behavior {
@@ -16,9 +17,9 @@ public class Student extends Person implements Parcelable, Behavior {
         this.takenCourses = takenCourses;
     }
 
-    public Student(Parcel in, Map<String, String> takenCourses) {
-        super(in);
-        this.takenCourses = takenCourses;
+    public Student(String name, String eMail, String password) {
+        super(name, eMail, password);
+        takenCourses = new HashMap<>();
     }
 
     public Map<String, String> getTakenCourses() {

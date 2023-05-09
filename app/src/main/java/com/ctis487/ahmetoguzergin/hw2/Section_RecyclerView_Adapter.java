@@ -166,7 +166,7 @@ public class Section_RecyclerView_Adapter extends RecyclerView.Adapter<Section_R
             public void onClick(DialogInterface dialogInterface, int i) {
                 course.getSections().remove(section);
                 adapter.notifyDataSetChanged();
-                MainSys.msg(context, "Section with id: " + section.getSectionNo() + " is deleted successfully.");
+                MainSys.msg(context, "Section with no: " + section.getSectionNo() + " is deleted successfully.");
                 //update database
             }
         });
