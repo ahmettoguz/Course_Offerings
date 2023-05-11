@@ -10,8 +10,5 @@
 * Gestures used for events (Delete, enroll, unenroll section with fling, display course details with long press).
 * Validation for user input is performed.
 
-
 --Problems--
-click eventi olmadan flingler çalışmıyor section recycler view adapter line 71?
-Recycler view i max height ile wrap content yapmak istiyorum nasıl yapacağım?
-constraint layout dışında, view'in width'ine sayfanın 75% ini kapla diyebilir miyiz?
+* Database operations is done (Insert new user, Insert section, Delete section).
