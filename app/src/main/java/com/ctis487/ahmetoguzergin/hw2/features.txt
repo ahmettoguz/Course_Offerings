@@ -8,6 +8,7 @@
 * custom launcher icon used.
 * text blink and color animation used.
 * Gestures used for events (Delete, enroll, unenroll section with fling, display course details with long press).
+* Validation for user input is performed.
 
 
 --Problems--
