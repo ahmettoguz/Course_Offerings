@@ -1,15 +1,16 @@
 * Object Oriented concepts used (Inheritance, Intent, Polymorphism).
 * Object transferrance between activities (Intent, Bundle, Parcelable).
-* custom spinner used.
-* custom recycler view used.
-* authentication (Behavior of the users) provided. For ex.(Teacher cannot delete other teacher section).
-* authorization (Login operation) provided.
-* filtering courses by the years.
-* custom launcher icon used.
-* text blink and color animation used.
+* Custom spinner used.
+* Custom recycler view used.
+* Authentication (Behavior of the users) provided. For ex.(Teacher cannot delete other teacher section).
+* Authorization (Login operation) provided.
+* Filtering courses by the years.
+* Custom launcher icon used.
+* Text blink and color animation used.
 * Gestures used for events (Delete, enroll, unenroll section with fling, display course details with long press).
 * Validation for user input is performed.
 * Java files well-structured.
+* Apk File is added to \app\build\outputs\apk\debug
 
 --Problems--
 * Database operations is done (Insert new user, Insert section, Delete section).
