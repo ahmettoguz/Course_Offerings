@@ -1,4 +1,4 @@
-package com.ctis487.ahmetoguzergin.hw2;
+package com.ctis487.ahmetoguzergin.hw2.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.ctis487.ahmetoguzergin.hw2.Business.MainSys;
+import com.ctis487.ahmetoguzergin.hw2.Models.Person;
+import com.ctis487.ahmetoguzergin.hw2.Models.Student;
 import com.ctis487.ahmetoguzergin.hw2.databinding.ActivityRegisterBinding;
 
 import java.util.ArrayList;

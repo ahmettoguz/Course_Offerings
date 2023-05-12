@@ -1,4 +1,4 @@
-package com.ctis487.ahmetoguzergin.hw2;
+package com.ctis487.ahmetoguzergin.hw2.Models;
 
 import java.util.ArrayList;
 

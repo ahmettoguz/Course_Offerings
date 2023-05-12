@@ -1,13 +1,13 @@
-package com.ctis487.ahmetoguzergin.hw2;
+package com.ctis487.ahmetoguzergin.hw2.Models;
 
-import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-public class Person implements Parcelable,Behavior{
+import com.ctis487.ahmetoguzergin.hw2.Interfaces.Behavior;
+
+public class Person implements Parcelable, Behavior {
     private String name;
     private String eMail;
     private String password;

@@ -1,5 +1,5 @@
 
-package com.ctis487.ahmetoguzergin.hw2;
+package com.ctis487.ahmetoguzergin.hw2.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,13 +8,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.Toast;
 
+import com.ctis487.ahmetoguzergin.hw2.Adapter.Course_RecyclerView_Adapter;
+import com.ctis487.ahmetoguzergin.hw2.Business.MainSys;
+import com.ctis487.ahmetoguzergin.hw2.Models.Course;
+import com.ctis487.ahmetoguzergin.hw2.Models.Person;
+import com.ctis487.ahmetoguzergin.hw2.Models.Student;
+import com.ctis487.ahmetoguzergin.hw2.Models.Teacher;
+import com.ctis487.ahmetoguzergin.hw2.R;
+import com.ctis487.ahmetoguzergin.hw2.Adapter.custom_Spinner_Adapter;
 import com.ctis487.ahmetoguzergin.hw2.databinding.ActivityCourseBinding;
+
 
 import java.util.ArrayList;
 

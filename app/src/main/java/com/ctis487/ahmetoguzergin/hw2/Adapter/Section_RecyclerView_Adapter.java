@@ -1,15 +1,13 @@
-package com.ctis487.ahmetoguzergin.hw2;
+package com.ctis487.ahmetoguzergin.hw2.Adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -17,15 +15,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GestureDetectorCompat;
 
-import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
+
+import com.ctis487.ahmetoguzergin.hw2.Activity.Sections_Student_Activity;
+import com.ctis487.ahmetoguzergin.hw2.Business.MainSys;
+import com.ctis487.ahmetoguzergin.hw2.Models.Course;
+import com.ctis487.ahmetoguzergin.hw2.Models.Person;
+import com.ctis487.ahmetoguzergin.hw2.Models.Section;
+import com.ctis487.ahmetoguzergin.hw2.Models.Student;
+import com.ctis487.ahmetoguzergin.hw2.Models.Teacher;
+import com.ctis487.ahmetoguzergin.hw2.R;
 
 public class Section_RecyclerView_Adapter extends RecyclerView.Adapter<Section_RecyclerView_Adapter.Recycler_View_ItemHolder> {
     private Context context;

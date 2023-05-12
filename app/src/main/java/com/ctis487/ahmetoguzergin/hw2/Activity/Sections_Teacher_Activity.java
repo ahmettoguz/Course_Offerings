@@ -1,14 +1,20 @@
-package com.ctis487.ahmetoguzergin.hw2;
+package com.ctis487.ahmetoguzergin.hw2.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.ctis487.ahmetoguzergin.hw2.Business.MainSys;
+import com.ctis487.ahmetoguzergin.hw2.Models.Course;
+import com.ctis487.ahmetoguzergin.hw2.Models.Person;
+import com.ctis487.ahmetoguzergin.hw2.Models.Section;
+import com.ctis487.ahmetoguzergin.hw2.Models.Teacher;
+import com.ctis487.ahmetoguzergin.hw2.R;
+import com.ctis487.ahmetoguzergin.hw2.Adapter.Section_RecyclerView_Adapter;
 import com.ctis487.ahmetoguzergin.hw2.databinding.ActivitySectionsTeacherBinding;
 
 import androidx.recyclerview.widget.LinearLayoutManager;

@@ -1,11 +1,9 @@
-package com.ctis487.ahmetoguzergin.hw2;
+package com.ctis487.ahmetoguzergin.hw2.Models;
 
-import android.content.Context;
-import android.os.Parcel;
 import android.os.Parcelable;
-import android.widget.Toast;
 
-import java.util.ArrayList;
+import com.ctis487.ahmetoguzergin.hw2.Interfaces.Behavior;
+
 import java.util.HashMap;
 import java.util.Map;
 

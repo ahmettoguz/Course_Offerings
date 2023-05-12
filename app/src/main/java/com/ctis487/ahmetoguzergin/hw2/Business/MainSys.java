@@ -1,4 +1,4 @@
-package com.ctis487.ahmetoguzergin.hw2;
+package com.ctis487.ahmetoguzergin.hw2.Business;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
@@ -6,8 +6,6 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.TextView;
@@ -15,9 +13,14 @@ import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
-import java.lang.reflect.Array;
+import com.ctis487.ahmetoguzergin.hw2.Models.Course;
+import com.ctis487.ahmetoguzergin.hw2.Models.Person;
+import com.ctis487.ahmetoguzergin.hw2.Models.Section;
+import com.ctis487.ahmetoguzergin.hw2.Models.Student;
+import com.ctis487.ahmetoguzergin.hw2.Models.Teacher;
+import com.ctis487.ahmetoguzergin.hw2.R;
+
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;

@@ -1,8 +1,7 @@
-package com.ctis487.ahmetoguzergin.hw2;
+package com.ctis487.ahmetoguzergin.hw2.Adapter;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-
 import android.view.MotionEvent;
 
 import androidx.core.view.GestureDetectorCompat;
 
 import android.view.GestureDetector;
-import android.widget.Toast;
+
+import com.ctis487.ahmetoguzergin.hw2.Interfaces.Item_Type;
+import com.ctis487.ahmetoguzergin.hw2.Models.Course;
+import com.ctis487.ahmetoguzergin.hw2.R;
 
 
 public class Course_RecyclerView_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Item_Type {
@@ -32,7 +33,7 @@ public class Course_RecyclerView_Adapter extends RecyclerView.Adapter<RecyclerVi
     AdapterBehavior behavior;
 
     // interface for behavior
-    interface AdapterBehavior {
+    public interface AdapterBehavior {
         void displayItem(Course course);
     }
 
