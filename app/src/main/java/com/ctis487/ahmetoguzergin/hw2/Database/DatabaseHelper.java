@@ -8,11 +8,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.ctis487.ahmetoguzergin.hw2.Models.Section;
-
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static String DATABASE_NAME = "courseOfferingsDB";
-    public static int DATABASE_VERSION = 1;
+    public static int DATABASE_VERSION = 2;
 
     SQLiteDatabase sqLiteDB;
 
