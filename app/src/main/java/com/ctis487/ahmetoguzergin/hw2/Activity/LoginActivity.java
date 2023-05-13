@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.ctis487.ahmetoguzergin.hw2.Business.MainSys;
+import com.ctis487.ahmetoguzergin.hw2.Database.DatabaseHelper;
 import com.ctis487.ahmetoguzergin.hw2.Models.Person;
 import com.ctis487.ahmetoguzergin.hw2.databinding.ActivityLoginBinding;
 
@@ -17,10 +18,17 @@ import androidx.core.view.GestureDetectorCompat;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 
 public class LoginActivity extends AppCompatActivity {
     ActivityLoginBinding binding;
-
+    DatabaseHelper dbHelper;
     private GestureDetectorCompat gestureDetector;
     private CustomGestureListener customGestureListener;
 
@@ -40,6 +48,27 @@ public class LoginActivity extends AppCompatActivity {
 
         // lock orientation
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        // database operation
+        //Copy database from the assets/ folder to the data/data/<package>/databases/ folder. If it exist, copy operation will not performed
+        try {
+            String fileToDatabase = "/data/data/" + getPackageName() + "/databases/" + DatabaseHelper.DATABASE_NAME;
+            File file = new File(fileToDatabase);
+            File pathToDatabasesFolder = new File("/data/data/" + getPackageName() + "/databases/");
+            if (!file.exists()) {
+                pathToDatabasesFolder.mkdirs();
+                CopyDB(getResources().getAssets().open(DatabaseHelper.DATABASE_NAME),
+                        new FileOutputStream(fileToDatabase));
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // database helper for database opertaions
+        dbHelper = new DatabaseHelper(this);
+
 
         // create users
         MainSys.prepareData();
@@ -81,13 +110,21 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-//        binding.LoginBtnRegister.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                openRegisterPage();
-//            }
-//        });
     }
+
+    public void CopyDB(InputStream inputStream, OutputStream outputStream) throws IOException {
+        // Copy 1K bytes at a time
+        byte[] buffer = new byte[1024];
+        int length;
+
+        while ((length = inputStream.read(buffer)) > 0) {
+            outputStream.write(buffer, 0, length);
+
+        }
+        inputStream.close();
+        outputStream.close();
+    }
+
 
     private void openRegisterPage() {
         Intent sendIntent = new Intent(LoginActivity.this, RegisterActivity.class);

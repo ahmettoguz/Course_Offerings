@@ -8,7 +8,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 public class Course_Table {
-    public static String TABLE_NAME = "contact";
+    public static String TABLE_NAME = "Course";
     public static String FIELD_CODE = "Code";
     public static String FIELD_NAME = "Name";
     public static String FIELD_DESCRIPTION = "Description";

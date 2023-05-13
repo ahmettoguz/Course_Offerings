@@ -8,7 +8,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 public class Person_Table {
-    public static String TABLE_NAME = "contact";
+    public static String TABLE_NAME = "Person";
     public static String FIELD_ID = "ID";
     public static String FIELD_NAME = "Name";
     public static String FIELD_EMAIL = "Email";
