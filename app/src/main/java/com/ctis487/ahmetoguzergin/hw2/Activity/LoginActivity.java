@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -69,9 +70,9 @@ public class LoginActivity extends AppCompatActivity {
         // database helper for database opertaions
         dbHelper = new DatabaseHelper(this);
 
-
-        // create users
-        MainSys.prepareData();
+        // get data from database
+        MainSys.getDatas(dbHelper);
+        // MainSys.prepareData();
 
         //fill input fileds
         fillAsStudent();

@@ -72,7 +72,7 @@ public class Person implements Parcelable, Behavior {
                 ", eMail='" + eMail + '\'' +
                 ", password='" + password + '\'' +
                 ", id=" + id +
-                '}';
+                "}";
     }
 
     // parcelable methods

@@ -3,9 +3,11 @@ package com.ctis487.ahmetoguzergin.hw2.Business;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.app.appsearch.observer.SchemaChangeInfo;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.TextView;
@@ -13,6 +15,11 @@ import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
+import com.ctis487.ahmetoguzergin.hw2.Database.DatabaseHelper;
+import com.ctis487.ahmetoguzergin.hw2.Database.Person_Helper;
+import com.ctis487.ahmetoguzergin.hw2.Database.Person_Table;
+import com.ctis487.ahmetoguzergin.hw2.Database.Student_Course_Section_Helper;
+import com.ctis487.ahmetoguzergin.hw2.Database.Student_Course_Section_Table;
 import com.ctis487.ahmetoguzergin.hw2.Models.Course;
 import com.ctis487.ahmetoguzergin.hw2.Models.Person;
 import com.ctis487.ahmetoguzergin.hw2.Models.Section;
@@ -20,6 +27,7 @@ import com.ctis487.ahmetoguzergin.hw2.Models.Student;
 import com.ctis487.ahmetoguzergin.hw2.Models.Teacher;
 import com.ctis487.ahmetoguzergin.hw2.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -106,6 +114,41 @@ public class MainSys {
         Collections.addAll(courses, c1, c2, c3, c4, c5, c6, c7);
     }
 
+    public static void getDatas(DatabaseHelper dbHelper) {
+        persons = new ArrayList<>();
+        courses = new ArrayList<>();
+        // Read
+        ArrayList<Person_Helper> person_helpers = Person_Table.getAll(dbHelper);
+        ArrayList<Student_Course_Section_Helper> student_courses = Student_Course_Section_Table.getAll(dbHelper);
+        Teacher t;
+        Student s;
+
+        for (Person_Helper p : person_helpers) {
+            if (checkStudentMemberOfSection(p.getId(), student_courses)) {
+                Map<String, String> takenCourses = new HashMap<String, String>();
+                for (Student_Course_Section_Helper stu_course_section : student_courses) {
+                    if (stu_course_section.getStudent_Id() == p.getId()) {
+                        takenCourses.put(stu_course_section.getCourse_Code(), stu_course_section.getSection_No() + "");
+                    }
+                }
+
+                s = new Student(p.getName(), p.getEmail(), p.getPassword(), takenCourses);
+                persons.add(s);
+            } else {
+                t = new Teacher(p.getName(), p.getEmail(), p.getPassword());
+                persons.add(t);
+            }
+        }
+    }
+
+    private static boolean checkStudentMemberOfSection(int id, ArrayList<Student_Course_Section_Helper> student_courses) {
+        for (Student_Course_Section_Helper stu_course : student_courses) {
+            if (stu_course.getStudent_Id() == id)
+                return true;
+        }
+        return false;
+    }
+
     public static void animateTextView(Context ctx, TextView tvTarget) {
         int myColor = ContextCompat.getColor(ctx, R.color.teal_700);
         int myAnotherColor = Color.rgb(231, 233, 235);
@@ -165,4 +208,5 @@ public class MainSys {
     public static ArrayList<Course> getCourses() {
         return courses;
     }
+
 }

@@ -29,4 +29,14 @@ public class Person_Helper {
     public String getPassword() {
         return password;
     }
+
+    @Override
+    public String toString() {
+        return "Person_Helper{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                "}\n\n";
+    }
 }

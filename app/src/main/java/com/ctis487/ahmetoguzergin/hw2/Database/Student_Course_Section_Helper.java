@@ -22,4 +22,13 @@ public class Student_Course_Section_Helper {
     public int getSection_No() {
         return section_No;
     }
+
+    @Override
+    public String toString() {
+        return "Student_Course_Section_Helper{" +
+                "student_Id=" + student_Id +
+                ", course_Code='" + course_Code + '\'' +
+                ", section_No=" + section_No +
+                "}\n\n";
+    }
 }

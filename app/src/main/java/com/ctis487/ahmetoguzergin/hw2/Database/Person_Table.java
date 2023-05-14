@@ -31,7 +31,7 @@ public class Person_Table {
     }
 
     // Read all
-    public static ArrayList<Person_Helper> getAllContact(DatabaseHelper dbHelper) {
+    public static ArrayList<Person_Helper> getAll(DatabaseHelper dbHelper) {
         Person_Helper anItem;
         ArrayList<Person_Helper> data = new ArrayList<>();
         Cursor cursor = dbHelper.getAllRecords(TABLE_NAME, null);

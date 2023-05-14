@@ -28,7 +28,7 @@ public class Student_Course_Section_Table {
     }
 
     // Read all
-    public static ArrayList<Student_Course_Section_Helper> getAllContact(DatabaseHelper dbHelper) {
+    public static ArrayList<Student_Course_Section_Helper> getAll(DatabaseHelper dbHelper) {
         Student_Course_Section_Helper anItem;
         ArrayList<Student_Course_Section_Helper> data = new ArrayList<>();
         Cursor cursor = dbHelper.getAllRecords(TABLE_NAME, null);
