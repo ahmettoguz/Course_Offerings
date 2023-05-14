@@ -29,7 +29,7 @@ public class Section_Table {
     }
 
     // Read all
-    public static ArrayList<Section_Helper> getAllContact(DatabaseHelper dbHelper) {
+    public static ArrayList<Section_Helper> getAll(DatabaseHelper dbHelper) {
         Section_Helper anItem;
         ArrayList<Section_Helper> data = new ArrayList<>();
         Cursor cursor = dbHelper.getAllRecords(TABLE_NAME, null);

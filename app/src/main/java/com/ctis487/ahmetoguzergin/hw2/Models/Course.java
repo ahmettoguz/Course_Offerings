@@ -97,5 +97,4 @@ public class Course {
                 "\n\nCredit: " + credit +
                 "\n\nLab Hour: " + hasLab;
     }
-
 }

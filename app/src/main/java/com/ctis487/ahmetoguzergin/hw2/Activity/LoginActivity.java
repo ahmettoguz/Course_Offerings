@@ -71,8 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         dbHelper = new DatabaseHelper(this);
 
         // get data from database
-        MainSys.getDatas(dbHelper);
-        // MainSys.prepareData();
+        MainSys.getDatas(dbHelper, LoginActivity.this);
 
         //fill input fileds
         fillAsStudent();

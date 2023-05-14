@@ -22,6 +22,6 @@ public class Section {
         return "Section{" +
                 "teacherName='" + teacherName + '\'' +
                 ", sectionNo=" + sectionNo +
-                '}';
+                "}\n\n";
     }
 }
