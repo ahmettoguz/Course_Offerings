@@ -21,7 +21,11 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 
 import com.ctis487.ahmetoguzergin.hw2.Activity.Sections_Student_Activity;
+import com.ctis487.ahmetoguzergin.hw2.Activity.Sections_Teacher_Activity;
 import com.ctis487.ahmetoguzergin.hw2.Business.MainSys;
+import com.ctis487.ahmetoguzergin.hw2.Database.Course_Section_Table;
+import com.ctis487.ahmetoguzergin.hw2.Database.DatabaseHelper;
+import com.ctis487.ahmetoguzergin.hw2.Database.Section_Table;
 import com.ctis487.ahmetoguzergin.hw2.Models.Course;
 import com.ctis487.ahmetoguzergin.hw2.Models.Person;
 import com.ctis487.ahmetoguzergin.hw2.Models.Section;
@@ -73,7 +77,7 @@ public class Section_RecyclerView_Adapter extends RecyclerView.Adapter<Section_R
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainSys.msg(context, "click eventi olmadan flingler çalışmıyor section recycler view adapter line 71.");
+                MainSys.msg(context, "Fling to interact.");
             }
         });
 
@@ -166,10 +170,17 @@ public class Section_RecyclerView_Adapter extends RecyclerView.Adapter<Section_R
         dialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                course.getSections().remove(section);
-                adapter.notifyDataSetChanged();
-                MainSys.msg(context, "Section with no: " + section.getSectionNo() + " is deleted successfully.");
-                //update database
+
+                boolean res = performDeleteSectionOperation(course, section);
+
+                if (res) {
+                    MainSys.msg(context, "Section with no: " + section.getSectionNo() + " is deleted successfully.");
+                    DatabaseHelper dbHelper = new DatabaseHelper(context);
+                    MainSys.getDatas(dbHelper, context);
+                    Sections_Teacher_Activity.refreshAdapter(context);
+                } else {
+                    MainSys.msg(context, "Database error for deletion of the section!");
+                }
             }
         });
 
@@ -187,5 +198,15 @@ public class Section_RecyclerView_Adapter extends RecyclerView.Adapter<Section_R
 
         dialog.create();
         dialog.show();
+    }
+
+    private boolean performDeleteSectionOperation(Course course, Section section) {
+        // Delete
+        DatabaseHelper dbHelper = new DatabaseHelper(context);
+        int deletedRow = Section_Table.delete(dbHelper, section.getSectionNo(), person.getId());
+        if (deletedRow != 0)
+            return true;
+
+        return false;
     }
 }

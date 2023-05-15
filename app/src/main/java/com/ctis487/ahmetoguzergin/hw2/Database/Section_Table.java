@@ -46,9 +46,9 @@ public class Section_Table {
     }
 
     // Delete
-    public static int delete(DatabaseHelper dbHelper, int id) {
+    public static int delete(DatabaseHelper dbHelper, int sectionNo, int teacherId) {
         Log.d("DATABASE OPERATIONS", "DELETE DONE");
-        String where = FIELD_ID + " = " + id;
+        String where = FIELD_SECTION_NO + " = " + sectionNo + " and " + FIELD_TEACHER_ID + " = " + teacherId;
 
         // returning affected row count. 0 returns if no record deleted.
         int deletedRowCount = dbHelper.delete(TABLE_NAME, where);

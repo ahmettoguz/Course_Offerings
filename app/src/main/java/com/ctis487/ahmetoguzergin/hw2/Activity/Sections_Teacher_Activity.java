@@ -2,6 +2,7 @@ package com.ctis487.ahmetoguzergin.hw2.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -29,10 +30,10 @@ import java.util.ArrayList;
 
 
 public class Sections_Teacher_Activity extends AppCompatActivity {
-    ActivitySectionsTeacherBinding binding;
-    Teacher teacher;
-    Section_RecyclerView_Adapter adapter;
-    Course course;
+    static ActivitySectionsTeacherBinding binding;
+    static Teacher teacher;
+    static Section_RecyclerView_Adapter adapter;
+    static Course course;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,16 +105,22 @@ public class Sections_Teacher_Activity extends AppCompatActivity {
             MainSys.msg(Sections_Teacher_Activity.this, "Insertion is unsuccessful !");
         }
 
+        refreshAdapter(Sections_Teacher_Activity.this);
+    }
+
+    public static void refreshAdapter(Context ctx) {
         String tempCourseCode = course.getCode();
-        MainSys.getDatas(dbHelper, Sections_Teacher_Activity.this);
+
+        DatabaseHelper dbHelper = new DatabaseHelper(ctx);
+        MainSys.getDatas(dbHelper, ctx);
         course = getCourseByCode(tempCourseCode);
 
         // fill the RecyclerView
-        adapter = new Section_RecyclerView_Adapter(this, course.getSections(), course, teacher);
+        adapter = new Section_RecyclerView_Adapter(ctx, course.getSections(), course, teacher);
         binding.sectionTeacherRv.setAdapter(adapter);
     }
 
-    private Course getCourseByCode(String courseCode) {
+    private static Course getCourseByCode(String courseCode) {
         Course c = null;
 
         for (Course course : MainSys.courses) {

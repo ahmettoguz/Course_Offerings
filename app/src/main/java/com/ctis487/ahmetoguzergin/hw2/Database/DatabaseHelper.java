@@ -29,11 +29,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL(Person_Table.CREATE_TABLE_SQL);
             db.execSQL(Section_Table.CREATE_TABLE_SQL);
             db.execSQL(Student_Course_Section_Table.CREATE_TABLE_SQL);
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
         Log.d("DATABASE OPERATIONS", "OnCreate, table is created, records inserted");
+    }
+
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        super.onOpen(db);
+        db.execSQL("PRAGMA foreign_keys = ON;");
     }
 
     @Override
