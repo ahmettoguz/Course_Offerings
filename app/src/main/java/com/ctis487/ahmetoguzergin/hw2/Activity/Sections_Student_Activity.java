@@ -133,7 +133,7 @@ public class Sections_Student_Activity extends AppCompatActivity {
                 student.getTakenCourses().put((String) course.getCode(), section.getSectionNo() + "");
                 course.setEnrolledStuCount(course.getEnrolledStuCount() + 1);
                 changeQuotaField();
-                MainSys.msg(ctx, "Enrolled from the section.");
+                MainSys.msg(ctx, "Enrolled for the section.");
             }
         } else if (direction.equalsIgnoreCase("left")) {
             if ((int) binding.sectionStudentTvQuota.getCurrentTextColor() == ENROLLED) {

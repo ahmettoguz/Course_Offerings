@@ -19,9 +19,8 @@ public class Person_Table {
     public static String DROP_TABLE_SQL = "DROP TABLE if exists " + TABLE_NAME;
 
     // Create
-    public static boolean insert(DatabaseHelper dbHelper, String id, String name, String email, String password) {
+    public static boolean insert(DatabaseHelper dbHelper, String name, String email, String password) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(FIELD_ID, id);
         contentValues.put(FIELD_NAME, name);
         contentValues.put(FIELD_EMAIL, email);
         contentValues.put(FIELD_PASSWORD, password);

@@ -11,5 +11,5 @@
     <string name="ADD">ADD</string>
     <string name="Register">REGISTER</string>
     <string name="Name">Name</string>
-    <string name="Student_Registeration">Student Registeration</string>
+    <string name="Professor_Registeration">Professor Registeration</string>
 </resources>

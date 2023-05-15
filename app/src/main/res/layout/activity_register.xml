@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/component_Margin_Top2"
-            android:text="@string/Student_Registeration"
+            android:text="@string/Professor_Registeration"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="@dimen/header_Size"

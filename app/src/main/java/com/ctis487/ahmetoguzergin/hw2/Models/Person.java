@@ -12,15 +12,13 @@ public class Person implements Parcelable, Behavior {
     private String eMail;
     private String password;
     private int id;
-    private static int lastUsedId = 1;
 
 
-    public Person(String name, String eMail, String password) {
+    public Person(int id, String name, String eMail, String password) {
         this.name = name;
         this.eMail = eMail;
         this.password = password;
-        this.id = lastUsedId;
-        lastUsedId++;
+        this.id = id;
     }
 
     // parcellable implementation
@@ -30,7 +28,6 @@ public class Person implements Parcelable, Behavior {
         eMail = in.readString();
         password = in.readString();
         id = in.readInt();
-        lastUsedId = in.readInt();
     }
 
     public static final Creator<Person> CREATOR = new Creator<Person>() {
@@ -87,7 +84,6 @@ public class Person implements Parcelable, Behavior {
         parcel.writeString(eMail);
         parcel.writeString(password);
         parcel.writeInt(id);
-        parcel.writeInt(lastUsedId);
     }
     // parcelable methods end
 

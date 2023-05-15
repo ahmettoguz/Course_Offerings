@@ -4,18 +4,23 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
 import com.ctis487.ahmetoguzergin.hw2.Business.MainSys;
+import com.ctis487.ahmetoguzergin.hw2.Database.DatabaseHelper;
 import com.ctis487.ahmetoguzergin.hw2.Models.Person;
 import com.ctis487.ahmetoguzergin.hw2.Models.Student;
+import com.ctis487.ahmetoguzergin.hw2.Models.Teacher;
 import com.ctis487.ahmetoguzergin.hw2.databinding.ActivityRegisterBinding;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
     ActivityRegisterBinding binding;
+    DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +46,17 @@ public class RegisterActivity extends AppCompatActivity {
         binding.registerBtnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Student s = checkErrors();
-                if (s != null) {
-                    MainSys.msg(RegisterActivity.this, "Registered successfully.");
-                    MainSys.getPersons().add(s);
-                    finish();
+                Person p = checkErrors();
+                if (p != null) {
+                    dbHelper = new DatabaseHelper(RegisterActivity.this);
+                    boolean res = MainSys.insertNewTeacher(dbHelper, p);
+                    if (res) {
+                        MainSys.getDatas(dbHelper, RegisterActivity.this);
+                        MainSys.msg(RegisterActivity.this, "Registered successfully.");
+                        finish();
+                    } else {
+                        MainSys.msg(RegisterActivity.this, "Cannot registered.");
+                    }
                 }
             }
         });
@@ -57,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
         binding.registerEtPassword.setText("123");
     }
 
-    private Student checkErrors() {
+    private Person checkErrors() {
         String name = binding.registerEtName.getText().toString();
         String eMail = binding.registerEtEmail.getText().toString();
         String password = binding.registerEtPassword.getText().toString();
@@ -85,6 +96,6 @@ public class RegisterActivity extends AppCompatActivity {
             return null;
         }
 
-        return new Student(name, eMail, password);
+        return new Person(0, name, eMail, password);
     }
 }

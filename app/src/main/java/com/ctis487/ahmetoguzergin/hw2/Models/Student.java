@@ -10,15 +10,11 @@ import java.util.Map;
 public class Student extends Person implements Parcelable, Behavior {
     private Map<String, String> takenCourses;
 
-    public Student(String name, String eMail, String password, Map<String, String> takenCourses) {
-        super(name, eMail, password);
+    public Student(int id, String name, String eMail, String password, Map<String, String> takenCourses) {
+        super(id, name, eMail, password);
         this.takenCourses = takenCourses;
     }
 
-    public Student(String name, String eMail, String password) {
-        super(name, eMail, password);
-        takenCourses = new HashMap<>();
-    }
 
     public Map<String, String> getTakenCourses() {
         return takenCourses;
