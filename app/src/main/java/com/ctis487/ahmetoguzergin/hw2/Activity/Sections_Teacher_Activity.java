@@ -5,10 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
 import com.ctis487.ahmetoguzergin.hw2.Business.MainSys;
+import com.ctis487.ahmetoguzergin.hw2.Database.Course_Section_Table;
+import com.ctis487.ahmetoguzergin.hw2.Database.DatabaseHelper;
+import com.ctis487.ahmetoguzergin.hw2.Database.Section_Helper;
+import com.ctis487.ahmetoguzergin.hw2.Database.Section_Table;
 import com.ctis487.ahmetoguzergin.hw2.Models.Course;
 import com.ctis487.ahmetoguzergin.hw2.Models.Person;
 import com.ctis487.ahmetoguzergin.hw2.Models.Section;
@@ -60,13 +65,10 @@ public class Sections_Teacher_Activity extends AppCompatActivity {
         binding.sectionTeacherIv.setImageResource(course.getImgId());
         binding.sectionTeacherTvCourse.setText("CTIS - " + course.getCode() + " : " + course.getName());
 
-        // bind recycler view
-        RecyclerView recyclerView = findViewById(R.id.section_Teacher_Rv);
-
         // * place items one by one
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(layoutManager);
+        binding.sectionTeacherRv.setLayoutManager(layoutManager);
 
         //// * place items with grid system
         //GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
@@ -78,21 +80,48 @@ public class Sections_Teacher_Activity extends AppCompatActivity {
 
         // fill the RecyclerView
         adapter = new Section_RecyclerView_Adapter(this, course.getSections(), course, teacher);
-        recyclerView.setAdapter(adapter);
+        binding.sectionTeacherRv.setAdapter(adapter);
 
         // add section
         binding.sectionTeacherBtnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addSection();
+                addSection(personId, binding.sectionTeacherRv);
             }
         });
     }
 
-    private void addSection() {
-        Section s = new Section(teacher.getName(), getAvailableSectionNo());
-        course.getSections().add(s);
-        adapter.notifyDataSetChanged();
+    private void addSection(int personId, RecyclerView recyclerView) {
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+
+        int insertedSectionId = Section_Table.insert(dbHelper, getAvailableSectionNo(), personId);
+        int insertedCourseId = -1;
+        if (insertedSectionId != -1) {
+            insertedCourseId = Course_Section_Table.insert(dbHelper, course.getCode(), insertedSectionId);
+        }
+
+        if (insertedSectionId == -1 && insertedCourseId == -1) {
+            MainSys.msg(Sections_Teacher_Activity.this, "Insertion is unsuccessful !");
+        }
+
+        String tempCourseCode = course.getCode();
+        MainSys.getDatas(dbHelper, Sections_Teacher_Activity.this);
+        course = getCourseByCode(tempCourseCode);
+
+        // fill the RecyclerView
+        adapter = new Section_RecyclerView_Adapter(this, course.getSections(), course, teacher);
+        binding.sectionTeacherRv.setAdapter(adapter);
+    }
+
+    private Course getCourseByCode(String courseCode) {
+        Course c = null;
+
+        for (Course course : MainSys.courses) {
+            if (course.getCode().equalsIgnoreCase(courseCode))
+                return course;
+        }
+
+        return c;
     }
 
     private int getAvailableSectionNo() {

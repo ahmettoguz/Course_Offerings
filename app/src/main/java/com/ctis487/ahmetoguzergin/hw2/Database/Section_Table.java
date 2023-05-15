@@ -18,9 +18,8 @@ public class Section_Table {
     public static String DROP_TABLE_SQL = "DROP TABLE if exists " + TABLE_NAME;
 
     // Create
-    public static int insert(DatabaseHelper dbHelper, int id, int section_No, int teacher_Id) {
+    public static int insert(DatabaseHelper dbHelper, int section_No, int teacher_Id) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(FIELD_ID, id);
         contentValues.put(FIELD_SECTION_NO, section_No);
         contentValues.put(FIELD_TEACHER_ID, teacher_Id);
 

@@ -74,7 +74,8 @@ public class LoginActivity extends AppCompatActivity {
         MainSys.getDatas(dbHelper, LoginActivity.this);
 
         //fill input fileds
-        fillAsStudent();
+        //fillAsStudent();
+        fillAsTeacher();
 
         // color animation of the title
         MainSys.animateTextView(this, binding.loginTvTitle);

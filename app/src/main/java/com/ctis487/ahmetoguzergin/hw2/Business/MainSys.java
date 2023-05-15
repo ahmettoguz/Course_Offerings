@@ -177,7 +177,7 @@ public class MainSys {
 
     public static boolean insertNewTeacher(DatabaseHelper dbHelper, Person p) {
         // Create
-        boolean res = Person_Table.insert(dbHelper, p.getName(), p.geteMail(), p.getPassword());
+        boolean res = Person_Table.insert(dbHelper, p.getName(), p.geteMail(), p.getPassword()) > 0;
         return res;
     }
 
