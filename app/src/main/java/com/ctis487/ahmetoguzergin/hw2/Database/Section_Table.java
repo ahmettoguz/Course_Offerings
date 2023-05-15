@@ -18,14 +18,15 @@ public class Section_Table {
     public static String DROP_TABLE_SQL = "DROP TABLE if exists " + TABLE_NAME;
 
     // Create
-    public static boolean insert(DatabaseHelper dbHelper, int id, int section_No, int teacher_Id) {
+    public static int insert(DatabaseHelper dbHelper, int id, int section_No, int teacher_Id) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(FIELD_ID, id);
         contentValues.put(FIELD_SECTION_NO, section_No);
         contentValues.put(FIELD_TEACHER_ID, teacher_Id);
 
-        boolean res = dbHelper.insert(TABLE_NAME, contentValues);
-        return res;
+        long insertedIdLong = dbHelper.insert(TABLE_NAME, contentValues);
+        int insertedIdInt = (int) insertedIdLong;
+        return insertedIdInt;
     }
 
     // Read all
@@ -46,11 +47,13 @@ public class Section_Table {
     }
 
     // Delete
-    public static boolean delete(DatabaseHelper dbHelper, int id) {
+    public static int delete(DatabaseHelper dbHelper, int id) {
         Log.d("DATABASE OPERATIONS", "DELETE DONE");
         String where = FIELD_ID + " = " + id;
-        boolean res = dbHelper.delete(TABLE_NAME, where);
-        return res;
+
+        // returning affected row count. 0 returns if no record deleted.
+        int deletedRowCount = dbHelper.delete(TABLE_NAME, where);
+        return deletedRowCount;
     }
 
 }

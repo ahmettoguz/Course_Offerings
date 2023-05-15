@@ -17,14 +17,15 @@ public class Student_Course_Section_Table {
     public static String DROP_TABLE_SQL = "DROP TABLE if exists " + TABLE_NAME;
 
     // Create
-    public static boolean insert(DatabaseHelper dbHelper, int student_Id, String course_Code, int section_No) {
+    public static int insert(DatabaseHelper dbHelper, int student_Id, String course_Code, int section_No) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(FIELD_STUDENT_ID, student_Id);
         contentValues.put(FIELD_COURSE_CODE, course_Code);
         contentValues.put(FIELD_SECTION_NO, section_No);
 
-        boolean res = dbHelper.insert(TABLE_NAME, contentValues);
-        return res;
+        long insertedIdLong = dbHelper.insert(TABLE_NAME, contentValues);
+        int insertedIdInt = (int) insertedIdLong;
+        return insertedIdInt;
     }
 
     // Read all
@@ -46,10 +47,12 @@ public class Student_Course_Section_Table {
     }
 
     // Delete
-    public static boolean delete(DatabaseHelper dbHelper, int student_Id, String course_Code) {
+    public static int delete(DatabaseHelper dbHelper, int student_Id, String course_Code) {
         Log.d("DATABASE OPERATIONS", "DELETE DONE");
         String where = FIELD_STUDENT_ID + " = " + student_Id + " and " + FIELD_COURSE_CODE + " = " + course_Code;
-        boolean res = dbHelper.delete(TABLE_NAME, where);
-        return res;
+
+        // returning affected row count. 0 returns if no record deleted.
+        int deletedRowCount = dbHelper.delete(TABLE_NAME, where);
+        return deletedRowCount;
     }
 }

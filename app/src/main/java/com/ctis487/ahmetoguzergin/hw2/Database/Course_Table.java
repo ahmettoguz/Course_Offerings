@@ -24,7 +24,7 @@ public class Course_Table {
     public static String DROP_TABLE_SQL = "DROP TABLE if exists " + TABLE_NAME;
 
     // Create
-    public static boolean insert(DatabaseHelper dbHelper, String code, String name, String description, int year, int lecture_Hour, int Quota, int enrolled_Student_Count, double credit, int has_Lab) {
+    public static int insert(DatabaseHelper dbHelper, String code, String name, String description, int year, int lecture_Hour, int Quota, int enrolled_Student_Count, double credit, int has_Lab) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(FIELD_CODE, code);
         contentValues.put(FIELD_NAME, name);
@@ -36,8 +36,9 @@ public class Course_Table {
         contentValues.put(FIELD_CREDIT, credit);
         contentValues.put(FIELD_HAS_LAB, has_Lab);
 
-        boolean res = dbHelper.insert(TABLE_NAME, contentValues);
-        return res;
+        long insertedIdLong = dbHelper.insert(TABLE_NAME, contentValues);
+        int insertedIdInt = (int) insertedIdLong;
+        return insertedIdInt;
     }
 
     // Read all
@@ -66,7 +67,7 @@ public class Course_Table {
     }
 
     // Update
-    public static boolean update(DatabaseHelper dbHelper, String code, String name, String description, int year, int lecture_Hour, int Quota, int enrolled_Student_Count, double credit, int has_Lab) {
+    public static int update(DatabaseHelper dbHelper, String code, String name, String description, int year, int lecture_Hour, int Quota, int enrolled_Student_Count, double credit, int has_Lab) {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(FIELD_CODE, code);
@@ -80,7 +81,9 @@ public class Course_Table {
         contentValues.put(FIELD_HAS_LAB, has_Lab);
 
         String where = FIELD_CODE + " = " + code;
-        boolean res = dbHelper.update(TABLE_NAME, contentValues, where);
-        return res;
+
+        // returning affected row count. 0 returns if no record changed.
+        int affectedRowCount = dbHelper.update(TABLE_NAME, contentValues, where);
+        return affectedRowCount;
     }
 }

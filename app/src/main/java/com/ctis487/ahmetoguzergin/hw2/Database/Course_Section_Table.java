@@ -16,13 +16,14 @@ public class Course_Section_Table {
     public static String DROP_TABLE_SQL = "DROP TABLE if exists " + TABLE_NAME;
 
     // Create
-    public static boolean insert(DatabaseHelper dbHelper, String course_Code, int section_ID) {
+    public static int insert(DatabaseHelper dbHelper, String course_Code, int section_ID) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(FIELD_COURSE_CODE, course_Code);
         contentValues.put(FIELD_SECTION_ID, section_ID);
 
-        boolean res = dbHelper.insert(TABLE_NAME, contentValues);
-        return res;
+        long insertedIdLong = dbHelper.insert(TABLE_NAME, contentValues);
+        int insertedIdInt = (int) insertedIdLong;
+        return insertedIdInt;
     }
 
     // Read all
@@ -43,13 +44,15 @@ public class Course_Section_Table {
     }
 
     // Update
-    public static boolean update(DatabaseHelper dbHelper, String course_Code, int section_ID) {
+    public static int update(DatabaseHelper dbHelper, String course_Code, int section_ID) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(FIELD_COURSE_CODE, course_Code);
         contentValues.put(FIELD_SECTION_ID, section_ID);
 
         String where = FIELD_COURSE_CODE + " = " + course_Code + " and " + FIELD_SECTION_ID + " = " + section_ID;
-        boolean res = dbHelper.update(TABLE_NAME, contentValues, where);
-        return res;
+
+        // returning affected row count. 0 returns if no record changed.
+        int affectedRowCount = dbHelper.update(TABLE_NAME, contentValues, where);
+        return affectedRowCount;
     }
 }

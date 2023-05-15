@@ -60,23 +60,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getSomeRecords(String tableName, String[] columns, String whereCondition) {
         Cursor cursor = sqLiteDB.query(tableName, columns, whereCondition, null, null, null, null);
-        Log.d("DATABASE OPERATIONS", "GET SOME RECORDS WITH WHERE CLAUSE");
         return cursor;
     }
 
-    public boolean insert(String tableName, ContentValues contentValues) {
-        Log.d("DATABASE OPERATIONS", "INSERT DONE");
-        return sqLiteDB.insert(tableName, null, contentValues) > 0;
+    public long insert(String tableName, ContentValues contentValues) {
+        // returning -1 if it is failed.
+        long lastInsertedId = sqLiteDB.insert(tableName, null, contentValues);
+        return lastInsertedId;
     }
 
-    public boolean update(String tableName, ContentValues contentValues, String whereCondition) {
-        Log.d("DATABASE OPERATIONS", "UPDATE DONE");
-
-        return sqLiteDB.update(tableName, contentValues, whereCondition, null) > 0;
+    public int update(String tableName, ContentValues contentValues, String whereCondition) {
+        // returning affected row count. 0 returns if no record changed.
+        return sqLiteDB.update(tableName, contentValues, whereCondition, null);
     }
 
-    public boolean delete(String tableName, String whereCondition) {
-        Log.d("DATABASE OPERATIONS", "DELETE DONE");
-        return sqLiteDB.delete(tableName, whereCondition, null) > 0;
+    public int delete(String tableName, String whereCondition) {
+        // returning affected row count. 0 returns if no record deleted.
+        return sqLiteDB.delete(tableName, whereCondition, null);
     }
 }

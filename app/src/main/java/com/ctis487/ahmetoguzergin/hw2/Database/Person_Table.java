@@ -19,14 +19,15 @@ public class Person_Table {
     public static String DROP_TABLE_SQL = "DROP TABLE if exists " + TABLE_NAME;
 
     // Create
-    public static boolean insert(DatabaseHelper dbHelper, String name, String email, String password) {
+    public static int insert(DatabaseHelper dbHelper, String name, String email, String password) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(FIELD_NAME, name);
         contentValues.put(FIELD_EMAIL, email);
         contentValues.put(FIELD_PASSWORD, password);
 
-        boolean res = dbHelper.insert(TABLE_NAME, contentValues);
-        return res;
+        long insertedIdLong = dbHelper.insert(TABLE_NAME, contentValues);
+        int insertedIdInt = (int) insertedIdLong;
+        return insertedIdInt;
     }
 
     // Read all
@@ -48,10 +49,12 @@ public class Person_Table {
     }
 
     // Delete
-    public static boolean delete(DatabaseHelper dbHelper, int id) {
+    public static int delete(DatabaseHelper dbHelper, int id) {
         Log.d("DATABASE OPERATIONS", "DELETE DONE");
         String where = FIELD_ID + " = " + id;
-        boolean res = dbHelper.delete(TABLE_NAME, where);
-        return res;
+
+        // returning affected row count. 0 returns if no record deleted.
+        int deletedRowCount = dbHelper.delete(TABLE_NAME, where);
+        return deletedRowCount;
     }
 }
