@@ -11,4 +11,5 @@
 * Validation for user input is performed.
 * Java files well-structured.
 * Apk File is added to \app\build\outputs\apk\debug path.
+* Relational database is used SQLite (Structure of tables in assets folder).
 * Database operations is done (Insert new user and section, Read datas, Update course, Delete section).
