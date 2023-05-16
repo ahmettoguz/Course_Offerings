@@ -67,18 +67,11 @@ public class Course_Table {
     }
 
     // Update
-    public static int update(DatabaseHelper dbHelper, String code, String name, String description, int year, int lecture_Hour, int Quota, int enrolled_Student_Count, double credit, int has_Lab) {
+    public static int update(DatabaseHelper dbHelper, String code, int enrolled_Student_Count) {
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(FIELD_CODE, code);
-        contentValues.put(FIELD_NAME, name);
-        contentValues.put(FIELD_DESCRIPTION, description);
-        contentValues.put(FIELD_YEAR, year);
-        contentValues.put(FIELD_LECTURE_HOUR, lecture_Hour);
-        contentValues.put(FIELD_QUOTA, Quota);
+
         contentValues.put(FIELD_ENROLLED_STUDENT_COUNT, enrolled_Student_Count);
-        contentValues.put(FIELD_CREDIT, credit);
-        contentValues.put(FIELD_HAS_LAB, has_Lab);
 
         String where = FIELD_CODE + " = " + code;
 

@@ -136,13 +136,13 @@ public class Section_RecyclerView_Adapter extends RecyclerView.Adapter<Section_R
                             MainSys.msg(context, "Section is not belong to you.");
                         }
                     } else {
-                        Sections_Student_Activity.flingEvents(context, ((Student) person), course, section, "right");
+                        Sections_Student_Activity.flingEvents(context, getStudentById(person.getId()), getCourseByCode(course.getCode()), section, "right");
                     }
 
                 } else {
                     // Fling to the left
                     if (person instanceof Student) {
-                        Sections_Student_Activity.flingEvents(context, ((Student) person), course, section, "left");
+                        Sections_Student_Activity.flingEvents(context, getStudentById(person.getId()), getCourseByCode(course.getCode()), section, "left");
                     }
                 }
                 result = true;
@@ -160,6 +160,29 @@ public class Section_RecyclerView_Adapter extends RecyclerView.Adapter<Section_R
         }
 
     }
+
+    private static Student getStudentById(int tempStuId) {
+
+        for (Person p : MainSys.getPersons()) {
+            if (p instanceof Student && tempStuId == p.getId()) {
+                return (Student) p;
+            }
+        }
+
+        return null;
+    }
+
+    private static Course getCourseByCode(String courseCode) {
+        Course c = null;
+
+        for (Course course : MainSys.courses) {
+            if (course.getCode().equalsIgnoreCase(courseCode))
+                return course;
+        }
+
+        return c;
+    }
+
 
     public void createShowDialog(String msg, Section section, Course course) {
         AlertDialog.Builder dialog = new AlertDialog.Builder(context); //this

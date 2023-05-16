@@ -9,10 +9,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.content.pm.ActivityInfo;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
 import com.ctis487.ahmetoguzergin.hw2.Business.MainSys;
+import com.ctis487.ahmetoguzergin.hw2.Database.Course_Table;
+import com.ctis487.ahmetoguzergin.hw2.Database.DatabaseHelper;
+import com.ctis487.ahmetoguzergin.hw2.Database.Student_Course_Section_Table;
 import com.ctis487.ahmetoguzergin.hw2.Models.Course;
 import com.ctis487.ahmetoguzergin.hw2.Models.Person;
 import com.ctis487.ahmetoguzergin.hw2.Models.Section;
@@ -129,9 +133,15 @@ public class Sections_Student_Activity extends AppCompatActivity {
             } else if ((int) binding.sectionStudentTvQuota.getCurrentTextColor() == FULL) {
                 MainSys.msg(ctx, "Quota is full.");
             } else if ((int) binding.sectionStudentTvQuota.getCurrentTextColor() == AVAILABLE) {
+                String tempCourseCode = course.getCode();
+                int tempStuId = student.getId();
 
-                student.getTakenCourses().put((String) course.getCode(), section.getSectionNo() + "");
-                course.setEnrolledStuCount(course.getEnrolledStuCount() + 1);
+                enrollSectionOperation(student, course, section, ctx);
+                refreshData(ctx);
+
+                Sections_Student_Activity.course = getCourseByCode(tempCourseCode);
+                Sections_Student_Activity.student = getStudentById(tempStuId);
+
                 changeQuotaField();
                 MainSys.msg(ctx, "Enrolled for the section.");
             }
@@ -140,9 +150,18 @@ public class Sections_Student_Activity extends AppCompatActivity {
                 String enrolledSectionNo = student.getTakenCourses().get(course.getCode());
 
                 if (section.getSectionNo() == Integer.parseInt(enrolledSectionNo)) {
-                    student.getTakenCourses().remove(course.getCode());
-                    course.setEnrolledStuCount(course.getEnrolledStuCount() - 1);
+
+                    String tempCourseCode = course.getCode();
+                    int tempStuId = student.getId();
+
+                    unEnrollSectionOperation(student, course, section, ctx);
+                    refreshData(ctx);
+
+                    Sections_Student_Activity.course = getCourseByCode(tempCourseCode);
+                    Sections_Student_Activity.student = getStudentById(tempStuId);
+
                     changeQuotaField();
+
                     MainSys.msg(ctx, "Unenrolled from the section.");
                 } else {
                     MainSys.msg(ctx, "You are not enrolled for this section.");
@@ -151,5 +170,61 @@ public class Sections_Student_Activity extends AppCompatActivity {
                 MainSys.msg(ctx, "You are not enrolled for this course.");
             }
         }
+    }
+
+    private static Student getStudentById(int tempStuId) {
+
+        for (Person p : MainSys.getPersons()) {
+            if (p instanceof Student && tempStuId == p.getId()) {
+                return (Student) p;
+            }
+        }
+
+        return null;
+    }
+
+    private static boolean enrollSectionOperation(Student student, Course course, Section section, Context ctx) {
+        DatabaseHelper dbHelper = new DatabaseHelper(ctx);
+        boolean result = true;
+
+        if (Student_Course_Section_Table.insert(dbHelper, student.getId(), course.getCode(), section.getSectionNo()) == -1)
+            result = false;
+        else if (Course_Table.update(dbHelper, course.getCode(), (course.getEnrolledStuCount() + 1)) ==
+                0) {
+            result = false;
+        }
+
+        return result;
+    }
+
+
+    private static boolean unEnrollSectionOperation(Student student, Course course, Section section, Context ctx) {
+        DatabaseHelper dbHelper = new DatabaseHelper(ctx);
+        boolean result = true;
+
+        if (Student_Course_Section_Table.delete(dbHelper, student.getId(), course.getCode()) == 0)
+            result = false;
+        else if (Course_Table.update(dbHelper, course.getCode(), (course.getEnrolledStuCount() - 1)) ==
+                0) {
+            result = false;
+        }
+
+        return result;
+    }
+
+    private static void refreshData(Context ctx) {
+        DatabaseHelper dbHelper = new DatabaseHelper(ctx);
+        MainSys.getDatas(dbHelper, ctx);
+    }
+
+    private static Course getCourseByCode(String courseCode) {
+        Course c = null;
+
+        for (Course course : MainSys.courses) {
+            if (course.getCode().equalsIgnoreCase(courseCode))
+                return course;
+        }
+
+        return c;
     }
 }
