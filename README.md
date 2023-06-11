@@ -62,3 +62,6 @@ This project has been developed for Android using the Java language. The aim of 
 
 <a href="https://github.com/ahmettoguz" target="_blank"><img width=50 height=50 src="https://avatars.githubusercontent.com/u/101711642?v=4"></a>
 
+
+
+
